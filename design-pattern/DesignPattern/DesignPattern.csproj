@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94A2D2E2-9975-4C2D-989C-883969302ADF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DesignPattern</RootNamespace>
+    <AssemblyName>DesignPattern</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter\Implement01\Wrapper.cs" />
+    <Compile Include="Adapter\Implement01\ITarget.cs" />
+    <Compile Include="Adapter\Implement01\Source.cs" />
+    <Compile Include="Adapter\Implement01\Test.cs" />
+    <Compile Include="Adapter\Implement02\Wrapper.cs" />
+    <Compile Include="Adapter\Implement02\ITarget.cs" />
+    <Compile Include="Adapter\Implement02\Source.cs" />
+    <Compile Include="Adapter\Implement02\Test.cs" />
+    <Compile Include="Adapter\Implement03\AbstractWrapper.cs" />
+    <Compile Include="Adapter\Implement03\ISource.cs" />
+    <Compile Include="Adapter\Implement03\Test.cs" />
+    <Compile Include="Adapter\Implement03\Wrapper1.cs" />
+    <Compile Include="Adapter\Implement03\Wrapper2.cs" />
+    <Compile Include="Bridge\Implement01\AbstractBridge.cs" />
+    <Compile Include="Bridge\Implement01\Bridge.cs" />
+    <Compile Include="Bridge\Implement01\ISource.cs" />
+    <Compile Include="Bridge\Implement01\SourceA.cs" />
+    <Compile Include="Bridge\Implement01\SourceB.cs" />
+    <Compile Include="Bridge\Implement01\Test.cs" />
+    <Compile Include="Bridge\Implement02\CSharpLog.cs" />
+    <Compile Include="Bridge\Implement02\CSharpWriter.cs" />
+    <Compile Include="Bridge\Implement02\JavaLog.cs" />
+    <Compile Include="Bridge\Implement02\JavaWriter.cs" />
+    <Compile Include="Bridge\Implement02\Log.cs" />
+    <Compile Include="Bridge\Implement02\Test.cs" />
+    <Compile Include="Bridge\Implement02\Writer.cs" />
+    <Compile Include="Builder\Implement01\Product.cs" />
+    <Compile Include="Builder\Implement01\ProductBuilder.cs" />
+    <Compile Include="Builder\Implement01\Test.cs" />
+    <Compile Include="Builder\Implement02\Director.cs" />
+    <Compile Include="Builder\Implement02\IProductBuilder.cs" />
+    <Compile Include="Builder\Implement02\Product.cs" />
+    <Compile Include="Builder\Implement02\ProductABuilder.cs" />
+    <Compile Include="Builder\Implement02\ProductBBuilder.cs" />
+    <Compile Include="Builder\Implement02\Test.cs" />
+    <Compile Include="Chain\Implement01\ConcreteHandler1.cs" />
+    <Compile Include="Chain\Implement01\ConcreteHandler2.cs" />
+    <Compile Include="Chain\Implement01\ConcreteHandler3.cs" />
+    <Compile Include="Chain\Implement01\Handler.cs" />
+    <Compile Include="Chain\Implement01\Test.cs" />
+    <Compile Include="Command\Implement01\Circle.cs" />
+    <Compile Include="Command\Implement01\Graphics.cs" />
+    <Compile Include="Command\Implement01\IGraphCommand.cs" />
+    <Compile Include="Command\Implement01\Line.cs" />
+    <Compile Include="Command\Implement01\Rectangle.cs" />
+    <Compile Include="Command\Implement01\Test.cs" />
+    <Compile Include="Composite\Implement01\Test.cs" />
+    <Compile Include="Composite\Implement01\Tree.cs" />
+    <Compile Include="Composite\Implement01\TreeNode.cs" />
+    <Compile Include="Composite\Implement02\Circle.cs" />
+    <Compile Include="Composite\Implement02\Graphics.cs" />
+    <Compile Include="Composite\Implement02\Line.cs" />
+    <Compile Include="Composite\Implement02\Picture.cs" />
+    <Compile Include="Composite\Implement02\Rectangle.cs" />
+    <Compile Include="Composite\Implement02\Test.cs" />
+    <Compile Include="Composite\Implement03\Circle.cs" />
+    <Compile Include="Composite\Implement03\Graphics.cs" />
+    <Compile Include="Composite\Implement03\Line.cs" />
+    <Compile Include="Composite\Implement03\Picture.cs" />
+    <Compile Include="Composite\Implement03\Rectangle.cs" />
+    <Compile Include="Composite\Implement03\Test.cs" />
+    <Compile Include="Decorator\Implement01\Decorator.cs" />
+    <Compile Include="Decorator\Implement01\ISource.cs" />
+    <Compile Include="Decorator\Implement01\Source.cs" />
+    <Compile Include="Decorator\Implement01\Test.cs" />
+    <Compile Include="Facade\Implement01\Computer.cs" />
+    <Compile Include="Facade\Implement01\Cpu.cs" />
+    <Compile Include="Facade\Implement01\Disk.cs" />
+    <Compile Include="Facade\Implement01\Memory.cs" />
+    <Compile Include="Facade\Implement01\Test.cs" />
+    <Compile Include="Facade\Implement02\Bank.cs" />
+    <Compile Include="Facade\Implement02\Credit.cs" />
+    <Compile Include="Facade\Implement02\Customer.cs" />
+    <Compile Include="Facade\Implement02\Loan.cs" />
+    <Compile Include="Facade\Implement02\Mortgage.cs" />
+    <Compile Include="Facade\Implement02\Test.cs" />
+    <Compile Include="Factory\Implement01\AbstractFactory.cs" />
+    <Compile Include="Factory\Implement01\AbstractProduct.cs" />
+    <Compile Include="Factory\Implement01\ChineseFactory.cs" />
+    <Compile Include="Factory\Implement01\ChineseProduct.cs" />
+    <Compile Include="Factory\Implement01\JapaneseFactory.cs" />
+    <Compile Include="Factory\Implement01\JapaneseProduct.cs" />
+    <Compile Include="Factory\Implement01\KoreanFactory.cs" />
+    <Compile Include="Factory\Implement01\KoreanProduct.cs" />
+    <Compile Include="Factory\Implement01\Test.cs" />
+    <Compile Include="Factory\Implement02\AbstractProduct.cs" />
+    <Compile Include="Factory\Implement02\ChineseProduct.cs" />
+    <Compile Include="Factory\Implement02\IFactory.cs" />
+    <Compile Include="Factory\Implement02\JapaneseProduct.cs" />
+    <Compile Include="Factory\Implement02\KoreanProduct.cs" />
+    <Compile Include="Factory\Implement02\RealFactory.cs" />
+    <Compile Include="Factory\Implement02\Test.cs" />
+    <Compile Include="Factory\lzl\AbstractFactory.cs" />
+    <Compile Include="Factory\lzl\AbstractParam.cs" />
+    <Compile Include="Factory\lzl\RealFactory.cs" />
+    <Compile Include="Factory\lzl\RequestParam.cs" />
+    <Compile Include="Factory\lzl\ResponseParam.cs" />
+    <Compile Include="Factory\lzl\Test.cs" />
+    <Compile Include="Flyweight\Implement01\Charactor.cs" />
+    <Compile Include="Flyweight\Implement01\CharactorA.cs" />
+    <Compile Include="Flyweight\Implement01\CharactorB.cs" />
+    <Compile Include="Flyweight\Implement01\CharactorC.cs" />
+    <Compile Include="Flyweight\Implement01\CharactorFactory.cs" />
+    <Compile Include="Flyweight\Implement01\Test.cs" />
+    <Compile Include="Interpreter\Implement01\Context.cs" />
+    <Compile Include="Interpreter\Implement01\Expression.cs" />
+    <Compile Include="Interpreter\Implement01\Minus.cs" />
+    <Compile Include="Interpreter\Implement01\Plus.cs" />
+    <Compile Include="Interpreter\Implement01\Test.cs" />
+    <Compile Include="Iterator\Implement01\Collection.cs" />
+    <Compile Include="Iterator\Implement01\Iterator.cs" />
+    <Compile Include="Iterator\Implement01\MyCollection.cs" />
+    <Compile Include="Iterator\Implement01\MyIterator.cs" />
+    <Compile Include="Iterator\Implement01\Test.cs" />
+    <Compile Include="Iterator\Implement02\IIterator.cs" />
+    <Compile Include="Iterator\Implement02\IList.cs" />
+    <Compile Include="Iterator\Implement02\List.cs" />
+    <Compile Include="Iterator\Implement02\MyIterator.cs" />
+    <Compile Include="Iterator\Implement02\Test.cs" />
+    <Compile Include="Iterator\Implement03\IEnumerable.cs" />
+    <Compile Include="Iterator\Implement03\IEumerator.cs" />
+    <Compile Include="Iterator\Implement03\Person.cs" />
+    <Compile Include="Iterator\Implement03\PersonsEnumerator.cs" />
+    <Compile Include="Iterator\Implement03\Test.cs" />
+    <Compile Include="Mediator\Implement01\AbstractMediator.cs" />
+    <Compile Include="Mediator\Implement01\AbstractPartner.cs" />
+    <Compile Include="Mediator\Implement01\Mediator.cs" />
+    <Compile Include="Mediator\Implement01\PartnerA.cs" />
+    <Compile Include="Mediator\Implement01\PartnerB.cs" />
+    <Compile Include="Mediator\Implement01\Test.cs" />
+    <Compile Include="Memento\Implement01\Memento.cs" />
+    <Compile Include="Memento\Implement01\Original.cs" />
+    <Compile Include="Memento\Implement01\Storage.cs" />
+    <Compile Include="Memento\Implement01\Test.cs" />
+    <Compile Include="Observer\Implement01\AbstractSubject.cs" />
+    <Compile Include="Observer\Implement01\IObserver.cs" />
+    <Compile Include="Observer\Implement01\MySubject.cs" />
+    <Compile Include="Observer\Implement01\Observer1.cs" />
+    <Compile Include="Observer\Implement01\Observer2.cs" />
+    <Compile Include="Observer\Implement01\ISubject.cs" />
+    <Compile Include="Observer\Implement01\Test.cs" />
+    <Compile Include="Observer\Implement02\IObserver.cs" />
+    <Compile Include="Observer\Implement02\Microsoft.cs" />
+    <Compile Include="Observer\Implement02\Observer.cs" />
+    <Compile Include="Observer\Implement02\Stock.cs" />
+    <Compile Include="Observer\Implement02\Test.cs" />
+    <Compile Include="Observer\Implement03\IObserver.cs" />
+    <Compile Include="Observer\Implement03\Microsoft.cs" />
+    <Compile Include="Observer\Implement03\Observer.cs" />
+    <Compile Include="Observer\Implement03\Stock.cs" />
+    <Compile Include="Observer\Implement03\Test.cs" />
+    <Compile Include="Observer\Implement04\Observer.cs" />
+    <Compile Include="Observer\Implement04\Stock.cs" />
+    <Compile Include="Observer\Implement04\Test.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prototype\Implement01\ColorManager.cs" />
+    <Compile Include="Prototype\Implement01\ColorPrototype.cs" />
+    <Compile Include="Prototype\Implement01\ConcteteColorPrototype.cs" />
+    <Compile Include="Prototype\Implement01\Test.cs" />
+    <Compile Include="Prototype\lzl\AbstractPrototype.cs" />
+    <Compile Include="Prototype\lzl\IDeepClone.cs" />
+    <Compile Include="Prototype\lzl\IShallowClone.cs" />
+    <Compile Include="Prototype\lzl\Member.cs" />
+    <Compile Include="Prototype\lzl\MyPrototype.cs" />
+    <Compile Include="Prototype\lzl\Test.cs" />
+    <Compile Include="Proxy\Implement01\ISource.cs" />
+    <Compile Include="Proxy\Implement01\Proxy.cs" />
+    <Compile Include="Proxy\Implement01\Source.cs" />
+    <Compile Include="Proxy\Implement01\Test.cs" />
+    <Compile Include="Proxy\Implement02\IMath.cs" />
+    <Compile Include="Proxy\Implement02\Math.cs" />
+    <Compile Include="Proxy\Implement02\MathProxy.cs" />
+    <Compile Include="Proxy\Implement02\Test.cs" />
+    <Compile Include="Singleton\Implement01\Singleton.cs" />
+    <Compile Include="Singleton\Implement02\Singleton.cs" />
+    <Compile Include="Singleton\Implement03\Singleton.cs" />
+    <Compile Include="Singleton\Implement04\Singleton.cs" />
+    <Compile Include="Singleton\Implement05\Singleton.cs" />
+    <Compile Include="State\Implement01\ILight.cs" />
+    <Compile Include="State\Implement01\Light.cs" />
+    <Compile Include="State\Implement01\LightOff.cs" />
+    <Compile Include="State\Implement01\LightOn.cs" />
+    <Compile Include="State\Implement01\Test.cs" />
+    <Compile Include="Strategy\Implement01\AbstractCalculator.cs" />
+    <Compile Include="Strategy\Implement01\Devide.cs" />
+    <Compile Include="Strategy\Implement01\ICalculator.cs" />
+    <Compile Include="Strategy\Implement01\Minus.cs" />
+    <Compile Include="Strategy\Implement01\Multiply.cs" />
+    <Compile Include="Strategy\Implement01\Plus.cs" />
+    <Compile Include="Strategy\Implement01\Test.cs" />
+    <Compile Include="Template\Implement01\AbstractCalculator.cs" />
+    <Compile Include="Template\Implement01\Devide.cs" />
+    <Compile Include="Template\Implement01\Minus.cs" />
+    <Compile Include="Template\Implement01\Multiply.cs" />
+    <Compile Include="Template\Implement01\Plus.cs" />
+    <Compile Include="Template\Implement01\Test.cs" />
+    <Compile Include="Template\Implement02\Category.cs" />
+    <Compile Include="Template\Implement02\DataAccessObject.cs" />
+    <Compile Include="Template\Implement02\Product.cs" />
+    <Compile Include="Template\Implement02\Test.cs" />
+    <Compile Include="Vistor\Implement01\IVistor.cs" />
+    <Compile Include="Vistor\Implement01\MySubject.cs" />
+    <Compile Include="Vistor\Implement01\MyVistor.cs" />
+    <Compile Include="Vistor\Implement01\Subject.cs" />
+    <Compile Include="Vistor\Implement01\Test.cs" />
+    <Compile Include="Vistor\Implement01\YourVistor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Adapter\readme.txt" />
+    <Content Include="Bridge\readme.txt" />
+    <Content Include="Builder\readme.txt" />
+    <Content Include="Chain\readme.txt" />
+    <Content Include="Composite\readme.txt" />
+    <Content Include="Decorator\readme.txt" />
+    <Content Include="Facade\readme.txt" />
+    <Content Include="Factory\readme.txt" />
+    <Content Include="Flyweight\readme.txt" />
+    <Content Include="Interpreter\readme.txt" />
+    <Content Include="Iterator\readme.txt" />
+    <Content Include="Mediator\readme.txt" />
+    <Content Include="Memento\readme.txt" />
+    <Content Include="Observer\readme.txt" />
+    <Content Include="Prototype\readme.txt" />
+    <Content Include="Proxy\readme.txt" />
+    <Content Include="Singleton\readme.txt" />
+    <Content Include="State\readme.txt" />
+    <Content Include="Strategy\readme.txt" />
+    <Content Include="Template\readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
