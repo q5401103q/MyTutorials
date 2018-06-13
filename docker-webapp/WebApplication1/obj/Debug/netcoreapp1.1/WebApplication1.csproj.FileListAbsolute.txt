@@ -1,0 +1,19 @@
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.deps.json
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.runtimeconfig.json
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.runtimeconfig.dev.json
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.dll
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.pdb
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.AssemblyInfo.cs
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.dll
+c:\users\administrator\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.pdb
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.deps.json
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.runtimeconfig.json
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.runtimeconfig.dev.json
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.dll
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.pdb
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.csprojResolveAssemblyReference.cache
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.csproj.CoreCompileInputs.cache
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.AssemblyInfoInputs.cache
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.AssemblyInfo.cs
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.dll
+E:\visualstudioprojects\vs2017projects\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.pdb
