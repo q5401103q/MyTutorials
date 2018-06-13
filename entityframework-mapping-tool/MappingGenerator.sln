@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingGenerator", "MappingGenerator\MappingGenerator.csproj", "{A38A7501-3F5D-4453-94BB-40E147A21DFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A38A7501-3F5D-4453-94BB-40E147A21DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38A7501-3F5D-4453-94BB-40E147A21DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38A7501-3F5D-4453-94BB-40E147A21DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38A7501-3F5D-4453-94BB-40E147A21DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {460AEDDE-E542-49C6-A63E-0BB7ECBBC01B}
+	EndGlobalSection
+EndGlobal

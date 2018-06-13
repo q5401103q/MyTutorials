@@ -1,0 +1,28 @@
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\bin\Debug\MappingGenerator.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\bin\Debug\MappingGenerator.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\bin\Debug\MappingGenerator.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.Form1.resources
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.pdb
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\bin\Debug\MappingGenerator.exe.config
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\bin\Debug\MappingGenerator.exe
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\bin\Debug\MappingGenerator.pdb
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.Form1.resources
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.Properties.Resources.resources
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.csproj.GenerateResource.Cache
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.csproj.CoreCompileInputs.cache
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.exe
+E:\visualstudioprojects\vs2017projects\MappingGenerator\MappingGenerator\obj\Debug\MappingGenerator.pdb
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\bin\Debug\MappingGenerator.exe.config
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\bin\Debug\MappingGenerator.exe
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\bin\Debug\MappingGenerator.pdb
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\obj\Debug\MappingGenerator.Form1.resources
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\obj\Debug\MappingGenerator.Properties.Resources.resources
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\obj\Debug\MappingGenerator.csproj.GenerateResource.cache
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\obj\Debug\MappingGenerator.csproj.CoreCompileInputs.cache
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\obj\Debug\MappingGenerator.exe
+D:\git_repository\MyTutorials\entityframework-mapping-tool\MappingGenerator\obj\Debug\MappingGenerator.pdb
