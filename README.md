@@ -1,3 +1,4 @@
 # MyTutorials
 
-some sample codes which is used in different senario
+This respository contains some sample codes that used in different senario.
+Very easy to understand.
