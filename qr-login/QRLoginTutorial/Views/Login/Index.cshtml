@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .qrdiv { margin-top:10px; }
+    .qrcode { width: 80px;height: 80px; }
+</style>
+
+
+<!--Script 文件引用，注意顺序必须是JQuery->signalR->hubs这个顺序 -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<!-- 添加 SignalR 类库的引用 -->
+<script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+
+<!-- 添加自动生成的 SignalR hub 脚本 -->
+<script src="/signalr/hubs"></script>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        //$(function () {
+        //    var chat = $.connection.qrHub;
+
+        //    $.connection.hub.url = "http://localhost:62090/signalr";
+
+        //    $.connection.hub.start({ jsonp: false }).done(function () {
+        //        //do nothing
+        //        //chat.server.hello();
+        //    });
+
+        //    chat.client.broadcastMessage = function (name, message) {
+        //        if (name == "200") {
+        //            var res = $.parseJSON(message);
+        //            var pms = "?qymc=" + res.comname + "&qylx=" + res.qylx;
+        //            window.location.href = "../../success.html" + pms;
+        //        }
+        //    };
+        //});
+    });
+
+    function SendRedirect()
+    {
+        $.ajax({
+            url: "/Login/AppRedirect",
+            type: "post",
+            data: { "type": "1" },
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if (data.flag == true) {
+                    var pms = "?comname=" + encodeURI(data.comname) + "&qylx=" + data.qylx;
+                    window.location.href = "../../success.html" + pms;
+                }
+                else {
+
+                }
+            }
+        });
+    }
+</script>
+
+<div>
+    <div>
+        请扫描二维码登录
+    </div>
+    <div id="imgcontainer" class="qrdiv">
+        <img id="qrcode" class="qrcode" src="@Url.Action("GenQrcode", "Login")"/>
+        <a href="javascript:SendRedirect();">点我跳转</a>
+    </div>
+</div>
+
