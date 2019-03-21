@@ -28,7 +28,8 @@ namespace Common.Library.security
             string encrypt = null;
             Rijndael aes = Rijndael.Create();
             aes.Mode = CipherMode.CBC;
-            aes.Padding = PaddingMode.Zeros;
+            aes.Padding = PaddingMode.PKCS7;
+            //aes.Padding = PaddingMode.Zeros;
             try
             {
                 using (MemoryStream mStream = new MemoryStream())
@@ -64,7 +65,8 @@ namespace Common.Library.security
             string decrypt = null;
             Rijndael aes = Rijndael.Create();
             aes.Mode = CipherMode.CBC;
-            aes.Padding = PaddingMode.Zeros;
+            aes.Padding = PaddingMode.PKCS7;
+            //aes.Padding = PaddingMode.Zeros;
             try
             {
                 using (MemoryStream mStream = new MemoryStream())
