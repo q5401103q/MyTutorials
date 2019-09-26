@@ -1,0 +1,58 @@
+<html>
+<head>
+	<style>
+		.main
+		{
+			height:400px;
+			width:600px;
+			border:1px solid;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<canvas id="theCanvas" width="600" height="400">
+			
+		</canvas>
+	</div>
+	
+	<script>
+		var theCanvas = document.getElementById("theCanvas");
+
+		var context = theCanvas.getContext("2d");
+		var isAllowDrawLine = false;
+		theCanvas.onmousedown = function(e)
+		{
+			isAllowDrawLine = true;
+			let ele = windowToCanvas(theCanvas, e.clientX, e.clientY);
+			context.moveTo(ele.x, ele.y);
+			
+			theCanvas.onmousemove = function(e)
+			{
+				if (isAllowDrawLine) 
+				{
+					let ele = windowToCanvas(theCanvas, e.clientX, e.clientY);
+					context.lineTo(ele.x, ele.y);
+					context.stroke();
+				}
+			}		
+		}
+		
+		theCanvas.onmouseup = function() {
+			isAllowDrawLine = false;
+		}
+		
+		
+		function windowToCanvas(canvas, x, y)
+		{
+			let rect = canvas.getBoundingClientRect();
+			
+			var position = new Object();
+			position.x = x-rect.left * (canvas.width / rect.width);
+			position.y = y-rect.top * (canvas.height / rect.height);
+			
+			return position;			
+		}
+	</script>
+</body>
+</html>
