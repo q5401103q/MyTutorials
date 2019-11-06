@@ -65,10 +65,10 @@ namespace PdfSignoff
                     //获取顶层图层
                     iTextSharp.text.pdf.PdfContentByte canvas = stream.GetOverContent(1);
 
-                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("郭兆麟", font), 3090, 93, 0);   //left, bottom, rotation
-                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("刘增连", font), 3090, 73, 0);   //left, bottom, rotation
-                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("李智", font), 3090, 53, 0);     //left, bottom, rotation
-                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("牟科铭", font), 3090, 33, 0);   //left, bottom, rotation
+                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("签名1", font), 3090, 93, 0);   //left, bottom, rotation
+                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("签名2", font), 3090, 73, 0);   //left, bottom, rotation
+                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("签名3", font), 3090, 53, 0);     //left, bottom, rotation
+                    iTextSharp.text.pdf.ColumnText.ShowTextAligned(canvas, iTextSharp.text.Element.ALIGN_LEFT, new iTextSharp.text.Phrase("签名4", font), 3090, 33, 0);   //left, bottom, rotation
                 }
             }
         }
