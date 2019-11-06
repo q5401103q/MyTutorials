@@ -14,7 +14,7 @@ namespace PdfSignoff
         /// </summary>
         public void ConvertPdf1()
         {
-            string sourcePath = "C:\\test\\source.pdf";
+            string sourcePath = $"C:\\test\\source.pdf";
             string targetPath = $"C:\\test\\target.pdf";
             string fontPath = $"C:\\Windows\\Fonts\\simkai.ttf";
 
