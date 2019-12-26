@@ -168,7 +168,6 @@ layui.define(['layer', 'laytpl', 'form'], function (exports) {
         }
 
         form.render('checkbox', tbFilter);  // 渲染表头的表单元素
-
         // 渲染数据
         if (options.reqData) {  // 异步加载
             this.renderBodyAsync();

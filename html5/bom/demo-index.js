@@ -79,6 +79,29 @@ function disableContextMenu() {
     }
 }
 
+/**
+ * 隐藏页面相关元素
+ */
+function disablePopupDom() {
+    let dom1 = document.getElementById("bomlist");
+    let dom2 = document.getElementById("splitlist");
+    let dom3 = document.getElementById("movelist");
+
+    dom1.style.display = "none";
+    dom2.style.display = "none";
+    dom3.style.display = "none";
+}
+
+/**
+ * 生成随机guid
+ */
+function getNextId() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 /*测试用*/
 function showView(view) {
     console.log("you clicked " + view);
@@ -101,6 +124,7 @@ function getDataById(data, id) {
 
 addLoadEvent(disableContextMenu);
 addLoadEvent(initArray);
+addLoadEvent(disablePopupDom);
 
 //定义扩展路径
 layui.config({
@@ -263,10 +287,8 @@ layui.config({
         ]
     }];
 
-    var tempid = 1;
-
     //渲染表格
-    var insTb = treeTable.render({
+    var mainTreeTable = treeTable.render({
         elem: '#mtree',
         data: data,
         tree: {
@@ -304,7 +326,7 @@ layui.config({
     });
 
     //默认展开全部树形结构-测试用
-    insTb.expandAll();
+    mainTreeTable.expandAll();
 
     //重写行单击事件，更改选中行样式
     treeTable.on('row(mtree)', function (obj) {
@@ -316,8 +338,6 @@ layui.config({
 
     //重写右键事件，弹出自定义命令
     treeTable.on('mouseRightMenu(mtree)', function (obj) {
-        var data = obj.data;
-
         var menu_data = [
             { 'data': obj, 'type': 'insertExistingMpart', 'title': '插入已有制造零件', icon: 'layui-icon-add-circle' },
             { 'data': obj, 'type': 'insertNewMpart', 'title': '插入新的制造零件', icon: 'layui-icon-add-circle' },
@@ -352,17 +372,17 @@ layui.config({
     //编辑单元格
     table.on('edit(split_mtree)', function (obj) {
         // 监听单元格编辑事件
-        debugger
-        var value = obj.value;
+        let value = obj.value;
 
         //输入非法字符时，强制将数量更正为1，并提示错误
         if (!/^[0-9]*$/.test(value)) {
-            let tmp = table.cache["split_mtree"];
-            let index = tmp.indexOfById(obj.data);
-            tmp[index].num = 1;
+            let tableSplitedData = table.cache["split_mtree"];
+            let index = tableSplitedData.indexOfById(obj.data);
+            tableSplitedData[index].num = 1;
+
             layer.msg("请输入正确的数量！");
             table.reload('split_mtree', {
-                data: tmp
+                data: tableSplitedData
             });
             return;
         }
@@ -370,27 +390,27 @@ layui.config({
         //输入非法数量时，强制将数量更正为1，并提示错误
         let number = parseInt(value);
         if (number < 1 || number > 2000) {
-            let tmp = table.cache["split_mtree"];
-            let index = tmp.indexOfById(obj.data);
-            tmp[index].num = 1;
+            let tableSplitedData = table.cache["split_mtree"];
+            let index = tableSplitedData.indexOfById(obj.data);
+            tableSplitedData[index].num = 1;
+
             layer.msg("请输入正确的数量！");
             table.reload('split_mtree', {
-                data: tmp
+                data: tableSplitedData
             });
             return;
         }
-
-
     });
 
     //插入已有制造零件
     $("#btnInsertExistingMpart").click(function () {
-        let tmp = insTb.checkStatus();
-        if (tmp && tmp.length == 1) {
+        let mainCheckedData = mainTreeTable.checkStatus();
+        if (mainCheckedData && mainCheckedData.length == 1) {
+            //构造测试数据
             let tmpdata = {
-                id: tempid,
-                name: "制造零件" + tempid,
-                seq: "MPRT-" + tempid,
+                id: getNextId(),
+                name: "制造零件-TEST",
+                seq: "MPRT-TEST",
                 classification: "Material",
                 version: "C",
                 generation: "11",
@@ -401,29 +421,29 @@ layui.config({
                 weight: "23kg",
                 timequota: 0.04,
                 materialquota: 0.93,
-                num: tempid % 5,
+                num: 4,
                 root: false,
                 icon: "icon-mbom",
                 createTime: "2019/11/18 10:44:00",
                 children: []
             }
 
-            tempid++; //测试用
-
-            tmp[0].children.push(tmpdata);
-            insTb.reload();
-            insTb.expandAll();
+            mainCheckedData[0].children.push(tmpdata);
+            mainTreeTable.reload();
+            mainTreeTable.expandAll();
         }
     });
 
     //插入新的制造零件
     $("#btnInsertNewMpart").click(function () {
-        let tmp = insTb.checkStatus();
-        if (tmp && tmp.length == 1) {
+        let mainCheckedData = mainTreeTable.checkStatus();
+        if (mainCheckedData && mainCheckedData.length == 1) {
+
+            //构造测试数据
             let tmpdata = {
-                id: tempid,
-                name: "制造零件" + tempid,
-                seq: "MPRT-" + tempid,
+                id: getNextId(),
+                name: "制造零件-TEST",
+                seq: "MPRT-TEST",
                 classification: "Material",
                 version: "C",
                 generation: "11",
@@ -434,29 +454,29 @@ layui.config({
                 weight: "23kg",
                 timequota: 0.04,
                 materialquota: 0.93,
-                num: tempid % 5,
+                num: 4,
                 root: false,
                 icon: "icon-mbom",
                 createTime: "2019/11/18 10:44:00",
                 children: []
             }
 
-            tempid++; //测试用
-
-            tmp[0].children.push(tmpdata);
-            insTb.reload();
-            insTb.expandAll();
+            mainCheckedData[0].children.push(tmpdata);
+            mainTreeTable.reload();
+            mainTreeTable.expandAll();
         }
     });
 
     //插入新的原材料
     $("#btnInsertNewMaterial").click(function () {
-        let tmp = insTb.checkStatus();
-        if (tmp && tmp.length == 1) {
+        let mainCheckedData = mainTreeTable.checkStatus();
+        if (mainCheckedData && mainCheckedData.length == 1) {
+
+            //构造测试数据
             let tmpdata = {
-                id: tempid,
-                name: "制造零件" + tempid,
-                seq: "MPRT-" + tempid,
+                id: getNextId(),
+                name: "制造零件-TEST",
+                seq: "MPRT-TEST",
                 classification: "Material",
                 version: "C",
                 generation: "11",
@@ -467,47 +487,53 @@ layui.config({
                 weight: "23kg",
                 timequota: 0.04,
                 materialquota: 0.93,
-                num: tempid % 5,
+                num: 4,
                 root: false,
                 icon: "icon-ebom",
                 createTime: "2019/11/18 10:44:00",
                 children: []
             }
 
-            tempid++; //测试用
-
-            tmp[0].children.push(tmpdata);
-            insTb.reload();
-            insTb.expandAll();
+            mainCheckedData[0].children.push(tmpdata);
+            mainTreeTable.reload();
+            mainTreeTable.expandAll();
         }
     });
 
     //删除制造临建
     $("#btnDeleteMpart").click(function () {
-        let tmp = insTb.checkStatus();
-        if (tmp[0].root) {
-            layer.alert('不能删除顶层制造零件', {
-                title: '提示'
-            });
+        let mainCheckedData = mainTreeTable.checkStatus();
+        if (mainCheckedData[0].root) {
+            layer.msg('不能删除顶层制造零件');
+            return;
         }
-        if (tmp && tmp.length == 1) {
-            let data = insTb.getData();
-            let pid = tmp[0].pid;
-            let parent = getDataById(data, pid);
-            let index = parent.children.indexOf(tmp[0]);
-            if (index > -1) {
-                parent.children.splice(index, 1);
-            }
-
-            let childs = tmp[0].children;
-            if (childs && childs.length > 0) {
-                for (let i = 0; i < childs.length; i++) {
-                    parent.children.push(childs[i]);
+        if (mainCheckedData && mainCheckedData.length == 1) {
+            layer.confirm("确认删除该零件？", { title: "提示" }, function (index) {
+                //获取全部数据
+                let mainTreeTableData = mainTreeTable.getData();
+                //找到父亲节点
+                let parent = getDataById(mainTreeTableData, mainCheckedData[0].pid);
+                //找到当前节点
+                let parentIndex = parent.children.indexOf(mainCheckedData[0]);
+                if (parentIndex > -1) {
+                    //从父节点中删除当前节点
+                    parent.children.splice(parentIndex, 1);
                 }
-            }
-            // insTb.update(tmp[0].id, tmp[0].children);
-            insTb.reload();
-            insTb.expandAll();
+
+                //将当前节点的儿子添加到父亲节点中，类似链表的操作
+                let childs = mainCheckedData[0].children;
+                if (childs && childs.length > 0) {
+                    for (let i = 0; i < childs.length; i++) {
+                        parent.children.push(childs[i]);
+                    }
+                }
+
+                //重载树结构
+                mainTreeTable.reload();
+                mainTreeTable.expandAll();
+
+                layer.close(index);
+            });
         }
     });
 
@@ -530,25 +556,31 @@ layui.config({
 
     //弹出拆分零件页面
     $("#btnSplitMpart").click(function () {
-        let tmp = insTb.checkStatus();
-        if (tmp && tmp.length == 1) {
-            if (tmp[0].num == 1) {
+        let mainCheckedData = mainTreeTable.checkStatus();
+        if (mainCheckedData && mainCheckedData.length == 1) {
+            //校验一
+            if (mainCheckedData[0].num == 1) {
                 layer.msg("数量等于1的零件无法拆分！");
                 return;
             }
-            if (tmp[0].icon == "icon-mbom") {
+            //校验二
+            if (mainCheckedData[0].icon == "icon-mbom") {
                 layer.msg("制造零件无法拆分，请选择工程零件！");
                 return;
             }
-            if (tmp[0].children && tmp[0].children.length > 0) {
+            //校验三
+            if (mainCheckedData[0].children && mainCheckedData[0].children.length > 0) {
                 layer.msg("该零件含有子阶零件无法拆分！");
                 return;
             }
-            $("#txtMpartId").val(tmp[0].id);
-            $("#txtMpartName").val(tmp[0].name);
-            $("#txtMpartNumber").val(tmp[0].seq);
-            $("#txtMpartNum").val(tmp[0].num);
 
+            //表单赋值
+            $("#txtMpartId").val(mainCheckedData[0].id);
+            $("#txtMpartName").val(mainCheckedData[0].name);
+            $("#txtMpartNumber").val(mainCheckedData[0].seq);
+            $("#txtMpartNum").val(mainCheckedData[0].num);
+
+            //重新加载空的表格
             table.reload('split_mtree', {
                 data: []
             });
@@ -568,57 +600,53 @@ layui.config({
                 content: $("#splitlist"),
                 yes: function (index, layeritem) {
                     //拆分后的结果
-                    let arr = table.cache["split_mtree"];
-                    if (arr && arr.length > 0) {
+                    let tableSplitedData = table.cache["split_mtree"];
+                    if (tableSplitedData && tableSplitedData.length > 0) {
+                        //定义总数量
                         let totalCount = 0;
-                        for (let i = 0; i < arr.length; i++) {
-                            totalCount += parseInt(arr[i].num);
+                        for (let i = 0; i < tableSplitedData.length; i++) {
+                            totalCount += parseInt(tableSplitedData[i].num);
                         }
-
-                        let count = 0;
-                        let countString = $("#txtMpartNum").val();
-                        if (countString != null && countString != "") {
-                            count = parseInt(countString);
-                        }
-                        else {
-                            layer.msg("拆分后的数量与总的数量不匹配");
-                            return;
-                        }
-
-                        if (totalCount != count) {
+                        //校验四
+                        if (totalCount != mainCheckedData[0].num) {
                             layer.msg("拆分后的数量与总的数量不匹配");
                             return;
                         }
                         else {
-                            let data = insTb.getData();
-                            let pid = tmp[0].pid;
-                            let parent = getDataById(data, pid);
-                            let pindex = parent.children.indexOf(tmp[0]);
-                            if (pindex > -1) {
-                                parent.children.splice(pindex, 1);
+                            //获取全部数据
+                            let mainTreeTableData = mainTreeTable.getData();
+                            //找到父亲节点
+                            let parent = getDataById(mainTreeTableData, mainCheckedData[0].pid);
+                            //找到当前节点
+                            let parentIndex = parent.children.indexOf(mainCheckedData[0]);
+                            if (parentIndex > -1) {
+                                //从父节点中删除当前节点
+                                parent.children.splice(parentIndex, 1);
                             }
 
-                            for (let j = 0; j < arr.length; j++) {
-                                arr[j].pid = pid;
-                                arr[j].classification = tmp[0].classification;
-                                arr[j].version = tmp[0].version;
-                                arr[j].generation = tmp[0].generation;
-                                arr[j].creator = tmp[0].creator;
-                                arr[j].state = tmp[0].state;
-                                arr[j].material = tmp[0].material;
-                                arr[j].standard = tmp[0].standard;
-                                arr[j].weight = tmp[0].weight;
-                                arr[j].timequota = tmp[0].timequota;
-                                arr[j].materialquota = tmp[0].materialquota;
-                                arr[j].root = tmp[0].root;
-                                arr[j].icon = tmp[0].icon;
-                                arr[j].createTime = tmp[0].createTime;
-                                arr[j].children = [];
-                                parent.children.push(arr[j]);
+                            //将拆分后的结果刷新到主页面树形表格中
+                            for (let j = 0; j < tableSplitedData.length; j++) {
+                                tableSplitedData[j].pid = mainCheckedData[0].pid;
+                                tableSplitedData[j].classification = mainCheckedData[0].classification;
+                                tableSplitedData[j].version = mainCheckedData[0].version;
+                                tableSplitedData[j].generation = mainCheckedData[0].generation;
+                                tableSplitedData[j].creator = mainCheckedData[0].creator;
+                                tableSplitedData[j].state = mainCheckedData[0].state;
+                                tableSplitedData[j].material = mainCheckedData[0].material;
+                                tableSplitedData[j].standard = mainCheckedData[0].standard;
+                                tableSplitedData[j].weight = mainCheckedData[0].weight;
+                                tableSplitedData[j].timequota = mainCheckedData[0].timequota;
+                                tableSplitedData[j].materialquota = mainCheckedData[0].materialquota;
+                                tableSplitedData[j].root = mainCheckedData[0].root;
+                                tableSplitedData[j].icon = mainCheckedData[0].icon;
+                                tableSplitedData[j].createTime = mainCheckedData[0].createTime;
+                                tableSplitedData[j].children = [];
+                                parent.children.push(tableSplitedData[j]);
                             }
 
-                            insTb.reload();
-                            insTb.expandAll();
+                            //重新加载树
+                            mainTreeTable.reload();
+                            mainTreeTable.expandAll();
 
                             layer.close(index);
                         }
@@ -636,48 +664,57 @@ layui.config({
 
     //添加行
     $("#btnInsertLine").click(function () {
-        data = {
-            id: tempid,
+        //构造测试数据
+        let tempdata = {
+            id: getNextId(),
             seq: $("#txtMpartNumber").val(),
             name: $("#txtMpartName").val(),
             num: 1,
         };
 
-        tempid++;
-
-        let arr = table.cache["split_mtree"];
-        if (arr) {
-            arr.push(data);
+        //获取表格数据
+        let tableSplitedData = table.cache["split_mtree"];
+        if (tableSplitedData) {
+            tableSplitedData.push(tempdata);
         } else {
-            arr = data;
+            tableSplitedData = tempdata;
         }
 
+        //重新加载数据
         table.reload('split_mtree', {
-            data: arr
+            data: tableSplitedData
         });
+
+
     });
 
     //删除行
     $("#btnDeleteLine").click(function () {
-        let tmp = table.checkStatus("split_mtree");
-        if (tmp.data && tmp.data.length > 0) {
-            let arr = table.cache["split_mtree"];
-            for (let i = 0; i < tmp.data.length; i++) {
-                arr.removeById(tmp.data[i]);
+        //获取已选中的行
+        let tableCheckedData = table.checkStatus("split_mtree");
+        if (tableCheckedData.data && tableCheckedData.data.length > 0) {
+            //获取表格所有行
+            let tableSplitedData = table.cache["split_mtree"];
+            for (let i = 0; i < tableCheckedData.data.length; i++) {
+                //从所有行中，移除已选中的行
+                tableSplitedData.removeById(tableCheckedData.data[i]);
             }
 
+            //重新加载表格
             table.reload('split_mtree', {
-                data: arr
+                data: tableSplitedData
             });
         }
     });
 
     //弹出移动零件页面
     $("#btnMoveMpart").click(function () {
-        let tmp = insTb.checkStatus();
-        if (tmp && tmp.length == 1) {
+        //获取需要移动的选中节点
+        let mainCheckedData = mainTreeTable.checkStatus();
+        if (mainCheckedData && mainCheckedData.length == 1) {
+
             //渲染表格
-            var moveTb = treeTable.render({
+            var moveTreeTable = treeTable.render({
                 elem: '#move_mtree',
                 data: data,
                 tree: {
@@ -694,8 +731,10 @@ layui.config({
                 even: false
             });
 
-            moveTb.removeAllChecked();
-            moveTb.expandAll();
+            //移除选中
+            moveTreeTable.removeAllChecked();
+            //全部展开
+            moveTreeTable.expandAll();
 
             layer.open({
                 type: 1,
@@ -711,29 +750,31 @@ layui.config({
                 moveType: 1,
                 content: $("#movelist"),
                 yes: function (index, layeritem) {
-                    let target = moveTb.checkStatus();
-                    if (target && target.length == 1) {
-                        //tmp[0]原节点
-                        //target[0]目标节点
-                        let data = insTb.getData();
-
-                        //原父阶移除子节点
-                        let parent = getDataById(data, tmp[0].pid);
-                        let pindex = parent.children.indexOf(tmp[0]);
-                        if (pindex > -1) {
-                            parent.children.splice(pindex, 1);
+                    let moveCheckedData = moveTreeTable.checkStatus();
+                    if (moveCheckedData && moveCheckedData.length == 1) {
+                        //mainCheckedData[0]原节点
+                        //moveCheckedData[0]目标节点
+                        //获取全部数据
+                        let mainTreeTableData = mainTreeTable.getData();
+                        //找到父亲节点
+                        let parent = getDataById(mainTreeTableData, mainCheckedData[0].pid);
+                        let parentIndex = parent.children.indexOf(mainCheckedData[0]);
+                        if (parentIndex > -1) {
+                            //父亲节点删除子节点
+                            parent.children.splice(parentIndex, 1);
                         }
 
                         //找到目标节点，插入
-                        let targetNode = getDataById(data, target[0].id);
-                        targetNode.children.push(tmp[0]);
+                        let targetNode = getDataById(data, moveCheckedData[0].id);
+                        targetNode.children.push(mainCheckedData[0]);
+                        //重新加载树
+                        moveTreeTable.reload();
+                        moveTreeTable.expandAll();
+                        //重新加载树
+                        mainTreeTable.reload();
+                        mainTreeTable.expandAll();
 
-                        moveTb.reload();
-                        moveTb.expandAll();
-                        
-                        insTb.reload();
-                        insTb.expandAll();
-
+                        //关闭层
                         layer.close(index);
                     }
                     else {
