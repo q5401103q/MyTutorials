@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>新版页面展现方式</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./layui/lay/modules/mouseRightMenu/mouseRightMenu.css" />
+    <link rel="stylesheet" href="./demo-index.css">
+</head>
+
+<body class="page-no-scroll">
+    <div class="wrapper">
+        <div class="menu">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-this">
+                    <a id="ebom" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/EBOM.png" class="menu-item">
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a id="mbom" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/EBOM.png" class="menu-item">
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a id="mcos" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/EBOM.png" class="menu-item">
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a id="card" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/EBOM.png" class="menu-item">
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a id="cost" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/EBOM.png" class="menu-item">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="page-wrapper">
+                <div class="layui-btn-container">
+                    <button id="btnInsertExistingMpart" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-add-circle"></i>插入已有制造零件
+                    </button>
+                    <button id="btnInsertNewMpart" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-add-circle"></i>插入新的制造零件
+                    </button>
+                    <button id="btnInsertNewMaterial" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-add-circle"></i>插入新的原材料
+                    </button>
+                    <button id="btnDeleteMpart" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-delete"></i>删除制造零件
+                    </button>
+                    <button id="btnMoveMpart" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-util"></i>移动制造零件
+                    </button>
+                    <button id="btnSplitMpart" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-link"></i>拆分制造零件
+                    </button>
+                    <button id="btnCheckBom" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-list"></i>检查责信度
+                    </button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="mtree"></table>
+            </div>
+        </div>
+    </div>
+    <!-- 鼠标右键展示内容块 -->
+    <div id="mouseRight">
+    </div>
+    <!-- 责信度展示块 -->
+    <div id="bomlist" class="con">
+        <ul id="con1">
+            <li>
+                <div class="partname">零件名称</div>
+                <div class="partnum">数量</div>
+                <div class="cl"></div>
+            </li>
+            <li class="same">
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li class="de">
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li class="kong1">
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+        </ul>
+        <ul id="con2">
+            <li>
+                <div class="partname">零件名称</div>
+                <div class="partnum">数量</div>
+                <div class="cl"></div>
+            </li>
+            <li class="same">
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li class="de">
+                <div>xx型号螺丝123</div>
+                <div>4</div>
+                <div class="cl"></div>
+            </li>
+            <li class="kong">
+                <div> </div>
+                <div> </div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>1</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>2</div>
+                <div class="cl"></div>
+            </li>
+            <li>
+                <div>xx型号螺丝</div>
+                <div>3</div>
+                <div class="cl"></div>
+            </li>
+        </ul>
+        <div class="cl"></div>
+    </div>
+    <!-- 拆分零件 -->
+    <div id="splitlist" class="tabbb1">
+        <div class="chai">
+            <form action="">
+                <input id="txtMpartId" type="hidden" placeholder="">
+                <span>零件名称：</span><input id="txtMpartName" type="text" readonly="true" placeholder="">
+                <span>零件编码：</span><input id="txtMpartNumber" type="text" readonly="true" placeholder="">
+                <span>原始数量：</span><input id="txtMpartNum" type="text" readonly="true" placeholder="">
+            </form>
+        </div>
+        <div class="layui-btn-container">
+            <button id="btnInsertLine" class="layui-btn layui-btn-sm layui-btn-primary">
+                <i class="layui-icon layui-icon-add-circle"></i>插入行
+            </button>
+            <button id="btnDeleteLine" class="layui-btn layui-btn-sm layui-btn-primary">
+                <i class="layui-icon layui-icon-delete"></i>删除行
+            </button>
+        </div>
+        <div>
+            <table class="layui-table" id="split_mtree" lay-filter="split_mtree">
+            </table>
+        </div>
+    </div>
+    <!-- 移动零件 -->
+    <div id="movelist" class="tabbb1">
+        <table id="move_mtree">
+        </table>
+    </div>
+    <!-- 页面加载效果 -->
+    <div class="page-loading">
+        <div class="ball-loader sm">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+    <script src="./layui/layui.js"></script>
+    <script src="./demo-index.js"></script>
+</body>
+
+</html>

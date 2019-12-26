@@ -24,3 +24,17 @@ C:\MyDirectory\software\git_repository\MyTutorials\nancy\NancySample\NancySample
 C:\MyDirectory\software\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.csproj.CopyComplete
 C:\MyDirectory\software\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.exe
 C:\MyDirectory\software\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.pdb
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\NancySample.exe.config
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\NancySample.exe
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\NancySample.pdb
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\Nancy.dll
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\Nancy.Hosting.Self.dll
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\Newtonsoft.Json.dll
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\Nancy.xml
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\Nancy.Hosting.Self.xml
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\bin\Debug\Newtonsoft.Json.xml
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.csprojAssemblyReference.cache
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.csproj.CoreCompileInputs.cache
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.csproj.CopyComplete
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.exe
+C:\MyDirectory\sourcecode\git_repository\MyTutorials\nancy\NancySample\NancySample\obj\Debug\NancySample.pdb
