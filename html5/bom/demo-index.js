@@ -105,6 +105,16 @@ function getNextId() {
 /*测试用*/
 function showView(view) {
     console.log("you clicked " + view);
+    debugger;
+    var elements = document.getElementsByClassName("content");
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].id == view + "_div") {
+            elements[i].style = "";
+        }
+        else {
+            elements[i].style = "display:none;";
+        }
+    }
 }
 
 /* 根据id获取数据，递归查找 */
@@ -287,6 +297,105 @@ layui.config({
         ]
     }];
 
+    var edata = [{
+        id: "900001",
+        name: "制造零件A",
+        seq: "MPRT-000001",
+        classification: "Assembly",
+        version: "A",
+        generation: "1",
+        creator: "Innovator Admin",
+        state: "Pending",
+        material: "钢质",
+        standard: "100*2323",
+        weight: "1.34kg",
+        timequota: 1.3,
+        materialquota: 23.4,
+        num: 3,
+        root: true,
+        icon: "icon-ebom",
+        createTime: "2019/11/18 10:44:00",
+        children: [{
+            id: "900002",
+            name: "制造零件A1",
+            seq: "MPRT-900002",
+            classification: "Assembly",
+            version: "A",
+            generation: "1",
+            creator: "Innovator Admin",
+            state: "Pending",
+            material: "钢质",
+            standard: "100*2323",
+            weight: "1.34kg",
+            timequota: 1.3,
+            materialquota: 23.4,
+            num: 3,
+            root: false,
+            icon: "icon-ebom",
+            createTime: "2019/11/18 10:44:00",
+            children: [{
+                id: "900003",
+                name: "制造零件A11",
+                seq: "MPRT-900003",
+                classification: "Assembly",
+                version: "A",
+                generation: "1",
+                creator: "Innovator Admin",
+                state: "Pending",
+                material: "钢质",
+                standard: "100*2323",
+                weight: "1.34kg",
+                timequota: 1.3,
+                materialquota: 23.4,
+                num: 3,
+                root: false,
+                icon: "icon-ebom",
+                createTime: "2019/11/18 10:44:00",
+                children:[]
+            },
+            {
+                id: "900004",
+                name: "制造零件A12",
+                seq: "MPRT-900004",
+                classification: "Assembly",
+                version: "A",
+                generation: "1",
+                creator: "Innovator Admin",
+                state: "Pending",
+                material: "钢质",
+                standard: "100*2323",
+                weight: "1.34kg",
+                timequota: 1.3,
+                materialquota: 23.4,
+                num: 3,
+                root: false,
+                icon: "icon-ebom",
+                createTime: "2019/11/18 10:44:00",
+                children:[]
+            }]
+        },
+        {
+            id: "900005",
+            name: "制造零件A5",
+            seq: "MPRT-900005",
+            classification: "Assembly",
+            version: "A",
+            generation: "1",
+            creator: "Innovator Admin",
+            state: "Pending",
+            material: "钢质",
+            standard: "100*2323",
+            weight: "1.34kg",
+            timequota: 1.3,
+            materialquota: 23.4,
+            num: 3,
+            root: false,
+            icon: "icon-ebom",
+            createTime: "2019/11/18 10:44:00",
+            children:[]
+        }]
+    }]
+
     //渲染表格
     var mainTreeTable = treeTable.render({
         elem: '#mtree',
@@ -325,8 +434,46 @@ layui.config({
         even: false
     });
 
+    var ebomTreeTable = treeTable.render({
+        elem: '#etree',
+        data: edata,
+        tree: {
+            iconIndex: 2
+        },
+        cellMinWidth: 50,
+        cols: [
+            { type: 'numbers' },
+            { type: 'checkbox' },
+            { field: 'seq', title: '物料编码', width: 600 },
+            //{ field: 'id', title: 'ID' },
+            { field: 'name', title: '名称' },
+            { field: 'classification', title: '物料类型' },
+            // { field: 'version', title: '版本' },
+            // { field: 'generation', title: '版次' },
+            // { field: 'creator', title: '创建人' },
+            // { field: 'state', title: '状态' },
+            // { field: 'material', title: '材料' },
+            // { field: 'standard', title: '材料规格' },
+            // { field: 'weight', title: '重量' },
+            { field: 'timequota', title: '工时定额' },
+            { field: 'materialquota', title: '材料定额' },
+            { field: 'num', title: '数量' },
+            {
+                field: 'createTime',
+                title: '创建时间',
+                templet: function (d) {
+                    return util.toDateString(d.createTime);
+                },
+                width: 180
+            }
+        ],
+        style: 'margin-top:0;',
+        even: false
+    });
+
     //默认展开全部树形结构-测试用
     mainTreeTable.expandAll();
+    ebomTreeTable.expandAll();
 
     //重写行单击事件，更改选中行样式
     treeTable.on('row(mtree)', function (obj) {
@@ -338,6 +485,7 @@ layui.config({
 
     //重写右键事件，弹出自定义命令
     treeTable.on('mouseRightMenu(mtree)', function (obj) {
+        //自定义命令
         var menu_data = [
             { 'data': obj, 'type': 'insertExistingMpart', 'title': '插入已有制造零件', icon: 'layui-icon-add-circle' },
             { 'data': obj, 'type': 'insertNewMpart', 'title': '插入新的制造零件', icon: 'layui-icon-add-circle' },
@@ -348,8 +496,364 @@ layui.config({
             { 'data': obj, 'type': 'checkBom', 'title': '检查责信度', icon: 'layui-icon-list' }
         ];
 
+        /**
+         * 右键命令事件监听
+         */
         mouseRightMenu.open(menu_data, false, function (obj1) {
-            console.log(obj1);
+            if (obj1.type == 'insertExistingMpart') {
+                if (obj1.data.data) {
+                    //构造测试数据
+                    let tmpdata = {
+                        id: getNextId(),
+                        name: "制造零件-TEST",
+                        seq: "MPRT-TEST",
+                        classification: "Material",
+                        version: "C",
+                        generation: "11",
+                        creator: "Jackal",
+                        state: "Pending",
+                        material: "铝合金",
+                        standard: "2.234-342KSJ",
+                        weight: "23kg",
+                        timequota: 0.04,
+                        materialquota: 0.93,
+                        num: 4,
+                        root: false,
+                        icon: "icon-mbom",
+                        createTime: "2019/11/18 10:44:00",
+                        children: []
+                    }
+
+                    //获取全部数据
+                    let mainTreeTableData = mainTreeTable.getData();
+                    //找到当前节点
+                    let currentNode = getDataById(mainTreeTableData, obj1.data.data.id);
+                    //这里要找到树的数据，插入
+                    currentNode.children.push(tmpdata);
+                    mainTreeTable.reload();
+                    mainTreeTable.expandAll();
+                }
+            }
+            if (obj1.type == 'insertNewMpart') {
+                if (obj1.data.data) {
+                    //构造测试数据
+                    let tmpdata = {
+                        id: getNextId(),
+                        name: "制造零件-TEST",
+                        seq: "MPRT-TEST",
+                        classification: "Material",
+                        version: "C",
+                        generation: "11",
+                        creator: "Jackal",
+                        state: "Pending",
+                        material: "铝合金",
+                        standard: "2.234-342KSJ",
+                        weight: "23kg",
+                        timequota: 0.04,
+                        materialquota: 0.93,
+                        num: 4,
+                        root: false,
+                        icon: "icon-mbom",
+                        createTime: "2019/11/18 10:44:00",
+                        children: []
+                    }
+
+                    //获取全部数据
+                    let mainTreeTableData = mainTreeTable.getData();
+                    //找到当前节点
+                    let currentNode = getDataById(mainTreeTableData, obj1.data.data.id);
+                    //这里要找到树的数据，插入
+                    currentNode.children.push(tmpdata);
+                    mainTreeTable.reload();
+                    mainTreeTable.expandAll();
+                }
+            }
+            if (obj1.type == 'insertNewMaterial') {
+                if (obj1.data.data) {
+                    //构造测试数据
+                    let tmpdata = {
+                        id: getNextId(),
+                        name: "制造零件-TEST",
+                        seq: "MPRT-TEST",
+                        classification: "Material",
+                        version: "C",
+                        generation: "11",
+                        creator: "Jackal",
+                        state: "Pending",
+                        material: "铝合金",
+                        standard: "2.234-342KSJ",
+                        weight: "23kg",
+                        timequota: 0.04,
+                        materialquota: 0.93,
+                        num: 4,
+                        root: false,
+                        icon: "icon-ebom",
+                        createTime: "2019/11/18 10:44:00",
+                        children: []
+                    }
+
+                    //获取全部数据
+                    let mainTreeTableData = mainTreeTable.getData();
+                    //找到当前节点
+                    let currentNode = getDataById(mainTreeTableData, obj1.data.data.id);
+                    //这里要找到树的数据，插入
+                    currentNode.children.push(tmpdata);
+                    mainTreeTable.reload();
+                    mainTreeTable.expandAll();
+                }
+            }
+            if (obj1.type == 'deleteMpart') {
+                if (obj1.data.data) {
+                    if (obj1.data.data.root) {
+                        layer.msg('不能删除顶层制造零件');
+                        return;
+                    }
+                    layer.confirm("确认删除该零件？", { title: "提示" }, function (index) {
+                        //获取全部数据
+                        let mainTreeTableData = mainTreeTable.getData();
+                        //找到父亲节点
+                        let parentNode = getDataById(mainTreeTableData, obj1.data.data.pid);
+                        //找到当前节点
+                        let parentIndex = parentNode.children.indexOfById(obj1.data.data);
+                        if (parentIndex > -1) {
+                            //从父节点中删除当前节点
+                            parentNode.children.splice(parentIndex, 1);
+                        }
+
+                        //将当前节点的儿子添加到父亲节点中，类似链表的操作
+                        let childs = obj1.data.data.children;
+                        if (childs && childs.length > 0) {
+                            for (let i = 0; i < childs.length; i++) {
+                                parentNode.children.push(childs[i]);
+                            }
+                        }
+
+                        mainTreeTable.reload();
+                        mainTreeTable.expandAll();
+
+                        layer.close(index);
+                    });
+                }
+            }
+            if (obj1.type == 'moveMpart') {
+                //获取全部数据
+                let mainTreeTableData = mainTreeTable.getData();
+
+                //渲染表格
+                var moveTreeTable = treeTable.render({
+                    elem: '#move_mtree',
+                    data: mainTreeTableData,
+                    tree: {
+                        iconIndex: 2
+                    },
+                    cellMinWidth: 50,
+                    cols: [
+                        { type: 'numbers', width: 40 },
+                        { type: 'checkbox', width: 48 },
+                        { field: 'seq', title: '物料编码', width: 470 },
+                        { field: 'name', title: '名称', width: 129 }
+                    ],
+                    style: 'margin-top:0;',
+                    even: false
+                });
+
+                //移除选中
+                moveTreeTable.removeAllChecked();
+                //全部展开
+                moveTreeTable.expandAll();
+
+                layer.open({
+                    type: 1,
+                    title: '移动至',
+                    resize: false,
+                    skin: 'layer-skin-mouse-right-menu',
+                    area: ['720px', '530px'],
+                    shade: ["0.0", '#000'],
+                    id: 'layer_move',
+                    maxHeight: 530,
+                    btn: ['保存', '取消'],
+                    btnAlign: 'c',
+                    moveType: 1,
+                    content: $("#movelist"),
+                    yes: function (index, layeritem) {
+                        debugger
+                        let moveCheckedData = moveTreeTable.checkStatus();
+                        if (moveCheckedData && moveCheckedData.length == 1) {
+                            //obj1.data.data原节点
+                            //moveCheckedData[0]目标节点
+
+                            //找到父亲节点
+                            let parent = getDataById(mainTreeTableData, obj1.data.data.pid);
+                            let parentIndex = parent.children.indexOfById(obj1.data.data);
+                            if (parentIndex > -1) {
+                                //父亲节点删除子节点
+                                parent.children.splice(parentIndex, 1);
+                            }
+
+                            //找到目标节点，插入
+                            let targetNode = getDataById(mainTreeTableData, moveCheckedData[0].id);
+                            targetNode.children.push(obj1.data.data);
+                            //重新加载树
+                            moveTreeTable.reload();
+                            moveTreeTable.expandAll();
+                            //重新加载树
+                            mainTreeTable.reload();
+                            mainTreeTable.expandAll();
+
+                            //关闭层
+                            layer.close(index);
+                        }
+                        else {
+                            layer.msg("请选中一个需要移动至的目标零件");
+                        }
+                    }
+                });
+            }
+            if (obj1.type == 'splitMpart') {
+                //校验一
+                if (obj1.data.data.num == 1) {
+                    layer.msg("数量等于1的零件无法拆分！");
+                    return;
+                }
+                //校验二
+                if (obj1.data.data.icon == "icon-mbom") {
+                    layer.msg("制造零件无法拆分，请选择工程零件！");
+                    return;
+                }
+                //校验三
+                if (obj1.data.data.children && obj1.data.data.children.length > 0) {
+                    layer.msg("该零件含有子阶零件无法拆分！");
+                    return;
+                }
+
+                //表单赋值
+                $("#txtMpartId").val(obj1.data.data.id);
+                $("#txtMpartName").val(obj1.data.data.name);
+                $("#txtMpartNumber").val(obj1.data.data.seq);
+                $("#txtMpartNum").val(obj1.data.data.num);
+
+                //重新加载空的表格
+                table.reload('split_mtree', {
+                    data: []
+                });
+
+                layer.open({
+                    type: 1,
+                    title: '拆分制造零件',
+                    resize: false,
+                    skin: 'layer-skin-mouse-right-menu',
+                    area: ['720px', '530px'],
+                    shade: ["0.0", '#000'],
+                    id: 'layer_split',
+                    maxHeight: 530,
+                    btn: ['保存', '取消'],
+                    btnAlign: 'c',
+                    moveType: 1,
+                    content: $("#splitlist"),
+                    yes: function (index, layeritem) {
+                        //拆分后的结果
+                        let tableSplitedData = table.cache["split_mtree"];
+                        if (tableSplitedData && tableSplitedData.length > 0) {
+                            //定义总数量
+                            let totalCount = 0;
+                            for (let i = 0; i < tableSplitedData.length; i++) {
+                                totalCount += parseInt(tableSplitedData[i].num);
+                            }
+                            //校验四
+                            if (totalCount != obj1.data.data.num) {
+                                layer.msg("拆分后的数量与总的数量不匹配");
+                                return;
+                            }
+                            else {
+                                //获取全部数据
+                                let mainTreeTableData = mainTreeTable.getData();
+                                //找到父亲节点
+                                let parent = getDataById(mainTreeTableData, obj1.data.data.pid);
+                                //找到当前节点
+                                let parentIndex = parent.children.indexOfById(obj1.data.data);
+                                if (parentIndex > -1) {
+                                    //从父节点中删除当前节点
+                                    parent.children.splice(parentIndex, 1);
+                                }
+
+                                //将拆分后的结果刷新到主页面树形表格中
+                                for (let j = 0; j < tableSplitedData.length; j++) {
+                                    tableSplitedData[j].pid = obj1.data.data.pid;
+                                    tableSplitedData[j].classification = obj1.data.data.classification;
+                                    tableSplitedData[j].version = obj1.data.data.version;
+                                    tableSplitedData[j].generation = obj1.data.data.generation;
+                                    tableSplitedData[j].creator = obj1.data.data.creator;
+                                    tableSplitedData[j].state = obj1.data.data.state;
+                                    tableSplitedData[j].material = obj1.data.data.material;
+                                    tableSplitedData[j].standard = obj1.data.data.standard;
+                                    tableSplitedData[j].weight = obj1.data.data.weight;
+                                    tableSplitedData[j].timequota = obj1.data.data.timequota;
+                                    tableSplitedData[j].materialquota = obj1.data.data.materialquota;
+                                    tableSplitedData[j].root = obj1.data.data.root;
+                                    tableSplitedData[j].icon = obj1.data.data.icon;
+                                    tableSplitedData[j].createTime = obj1.data.data.createTime;
+                                    tableSplitedData[j].children = [];
+                                    parent.children.push(tableSplitedData[j]);
+                                }
+
+                                //重新加载树
+                                mainTreeTable.reload();
+                                mainTreeTable.expandAll();
+
+                                layer.close(index);
+                            }
+                        }
+                        else {
+                            layer.msg("未拆分零件");
+                            return;
+                        }
+                    }
+                });
+            }
+            if (obj1.type == 'checkBom') {
+                layer.open({
+                    type: 1,
+                    title: 'BOM责信度检查',
+                    resize: false,
+                    skin: 'layer-skin-mouse-right-menu',
+                    area: ['720px', '530px'],
+                    shade: ["0.0", '#000'],
+                    id: 'layer_bom',
+                    maxHeight: 530, //自定义高度
+                    btn: [],
+                    moveType: 1,
+                    content: $("#bomlist")
+                });
+            }
+        });
+    });
+
+    treeTable.on('mouseRightMenu(etree)', function(obj)
+    {
+        //自定义命令
+        var menu_data = [
+            { 'data': obj, 'type': 'checkBom', 'title': '检查责信度', icon: 'layui-icon-list' }
+        ];
+
+        /**
+         * 右键命令事件监听
+         */
+        mouseRightMenu.open(menu_data, false, function (obj1) {
+            if (obj1.type == 'checkBom') {
+                layer.open({
+                    type: 1,
+                    title: 'BOM责信度检查',
+                    resize: false,
+                    skin: 'layer-skin-mouse-right-menu',
+                    area: ['720px', '530px'],
+                    shade: ["0.0", '#000'],
+                    id: 'layer_bom',
+                    maxHeight: 530, //自定义高度
+                    btn: [],
+                    moveType: 1,
+                    content: $("#bomlist")
+                });
+            }
         });
     });
 
@@ -538,7 +1042,23 @@ layui.config({
     });
 
     //检查BOM责信度
-    $("#btnCheckBom").click(function () {
+    $("#btnCheckMBom").click(function () {
+        layer.open({
+            type: 1,
+            title: 'BOM责信度检查',
+            resize: false,
+            skin: 'layer-skin-mouse-right-menu',
+            area: ['720px', '530px'],
+            shade: ["0.0", '#000'],
+            id: 'layer_bom',
+            maxHeight: 530, //自定义高度
+            btn: [],
+            moveType: 1,
+            content: $("#bomlist")
+        });
+    });
+    //检查BOM责信度
+    $("#btnCheckEBom").click(function () {
         layer.open({
             type: 1,
             title: 'BOM责信度检查',
@@ -765,7 +1285,7 @@ layui.config({
                         }
 
                         //找到目标节点，插入
-                        let targetNode = getDataById(data, moveCheckedData[0].id);
+                        let targetNode = getDataById(mainTreeTableData, moveCheckedData[0].id);
                         targetNode.children.push(mainCheckedData[0]);
                         //重新加载树
                         moveTreeTable.reload();

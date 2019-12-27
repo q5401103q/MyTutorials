@@ -3,24 +3,33 @@ layui.define(['jquery', 'layer'], function(exports) {
     var layer = layui.layer;
     var xx, yy;
 
+    /**
+     * [open 打开弹出层]
+     * @param  {[type]}   data     弹出层的菜单
+     * @param  {[type]}   obj      弹出层的设置
+     * @param  {Function} callback 弹出层的回调
+     * @return {[type]}            [description]
+     */
     function open(data, obj, callback) {
         if (obj == false) {
             obj = {};
         }
+        var generatedHeight = calcHeight(data);
+
         layer.open({
             title: false,
-            area: ['150px', '288px'], //宽高
-            resize: false,
-            offset: obj.offset || calc(xx, yy), //坐标，默认鼠标当前
-            type: 1,
-            anim: -1,
-            skin: obj.skin || 'layer-skin-mouse-right-menu', //样式类名
-            closeBtn: 0, //不显示关闭按钮
-            shade: obj.shade || ["0.0", '#000'], //遮罩
-            shadeClose: obj.shadeClose || true, //开启遮罩关闭
-            maxHeight: obj.maxHeight || 288, //自定义高度
-            height: 288,
-            content: obj.content || build_menu_data(data), //支持自定义内容
+            area: [obj.width || '150px', obj.height || generatedHeight], 	//宽高
+            resize: false,													//缩放大小
+            offset: calc(xx, yy), 											//坐标，默认鼠标当前
+            type: 1,														//1=页面层
+            anim: -1,														//弹出动画，无动画
+            skin: 'layer-skin-mouse-right-menu', 							//样式类名
+            closeBtn: 0, 													//不显示关闭按钮
+            shade: ["0.0", '#000'], 										//遮罩
+            shadeClose: true, 												//开启遮罩关闭
+            maxHeight: obj.maxHeight || generatedHeight, 					//自定义最大高度
+            height: obj.height || generatedHeight,							//自定义高度
+            content: build_menu_data(data), 								//自定义内容
             success: function(dom, index) {
                 $(".mouse-right-menu .enian_menu .text").click(function() {
                     if (callback) {
@@ -30,7 +39,6 @@ layui.define(['jquery', 'layer'], function(exports) {
                         } else {
                             returnData.data = $(this).children('a').html();
                         }
-
                         if (callback(returnData) == false) {
                             return;
                         }
@@ -40,6 +48,25 @@ layui.define(['jquery', 'layer'], function(exports) {
             }
         });
 
+
+        /**
+         * [calcHeight 动态计算高度]
+         * @param  {[type]} data [description]
+         * @return {[type]}      [description]
+         */
+        function calcHeight(data) {
+            if (data && data.length > 0) {
+                return (data.length * 41) + 'px';
+            }
+            return '0px';
+        }
+
+        /**
+         * [calc 计算偏移量]
+         * @param  {[type]} x [description]
+         * @param  {[type]} y [description]
+         * @return {[type]}   [description]
+         */
         function calc(x, y) {
             if (x > $(window).width() - 100) {
                 x = x - 110;
@@ -50,10 +77,12 @@ layui.define(['jquery', 'layer'], function(exports) {
             return [y + 'px', x + 'px'];
         }
     }
+
     $('body').mousemove(function(e) {
         xx = e.originalEvent.x || e.originalEvent.layerX || 0;
         yy = e.originalEvent.y || e.originalEvent.layerY || 0;
     })
+    
     //生成菜单数据
     function build_menu_data(data) {
         var h_son = ''
@@ -69,15 +98,15 @@ layui.define(['jquery', 'layer'], function(exports) {
             h_son += '" data-title="';
             h_son += data[i].title;
             h_son += '">';
-            h_son += '<a style="display:none;" data-type="'; 
-            h_son += dataType; 
-            h_son += '">'; 
-            h_son += data[i].data;                       
-            h_son += '</a>'; 
+            h_son += '<a style="display:none;" data-type="';
+            h_son += dataType;
+            h_son += '">';
+            h_son += data[i].data;
+            h_son += '</a>';
             h_son += '<i class="layui-icon '
             h_son += data[i].icon;
-            h_son += '"></i>';            
-            h_son += '<span class="context-item-text">' + data[i].title + '</span>';   
+            h_son += '"></i>';
+            h_son += '<span class="context-item-text">' + data[i].title + '</span>';
             h_son += '</div></div>';
         }
         return '<div class="mouse-right-menu">' + h_son + '</div>';

@@ -14,33 +14,34 @@
         <div class="menu">
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-this">
-                    <a id="ebom" href="javascript:;" onclick="showView(this.id)">
-                        <image src="./images/EBOM.png" class="menu-item">
+                    <a id="mbom" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/12.png" class="menu-item" title="MBOM">
                     </a>
                 </li>
                 <li class="layui-nav-item">
-                    <a id="mbom" href="javascript:;" onclick="showView(this.id)">
-                        <image src="./images/EBOM.png" class="menu-item">
+                    <a id="ebom" href="javascript:;" onclick="showView(this.id)">
+                        <image src="./images/11.png" class="menu-item" title="EBOM">
                     </a>
                 </li>
                 <li class="layui-nav-item">
                     <a id="mcos" href="javascript:;" onclick="showView(this.id)">
-                        <image src="./images/EBOM.png" class="menu-item">
+                        <image src="./images/13.png" class="menu-item" title="变更管理">
                     </a>
                 </li>
                 <li class="layui-nav-item">
                     <a id="card" href="javascript:;" onclick="showView(this.id)">
-                        <image src="./images/EBOM.png" class="menu-item">
+                        <image src="./images/14.png" class="menu-item" title="工艺卡片">
                     </a>
                 </li>
                 <li class="layui-nav-item">
                     <a id="cost" href="javascript:;" onclick="showView(this.id)">
-                        <image src="./images/EBOM.png" class="menu-item">
+                        <image src="./images/15.png" class="menu-item" title="成本管理">
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="content">
+        <!-- mbom页签 -->
+        <div id="mbom_div" class="content">
             <div class="page-wrapper">
                 <div class="layui-btn-container">
                     <button id="btnInsertExistingMpart" class="layui-btn layui-btn-sm layui-btn-primary">
@@ -61,7 +62,7 @@
                     <button id="btnSplitMpart" class="layui-btn layui-btn-sm layui-btn-primary">
                         <i class="layui-icon layui-icon-link"></i>拆分制造零件
                     </button>
-                    <button id="btnCheckBom" class="layui-btn layui-btn-sm layui-btn-primary">
+                    <button id="btnCheckMBom" class="layui-btn layui-btn-sm layui-btn-primary">
                         <i class="layui-icon layui-icon-list"></i>检查责信度
                     </button>
                 </div>
@@ -70,9 +71,26 @@
                 <table id="mtree"></table>
             </div>
         </div>
+        <div id="ebom_div" class="content" style="display: none;">
+            <div class="page-wrapper">
+                <div class="layui-btn-container">
+                    <button id="btnCheckEBom" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-list"></i>检查责信度
+                    </button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="etree"></table>
+            </div>
+        </div>
+        <div id="mcos_div" class="content" style="display: none;"><h3>This is MCOS</h3></div>
+        <div id="card_div" class="content" style="display: none;"><h3>This is CARD</h3></div>
+        <div id="cost_div" class="content" style="display: none;"><h3>This is COST</h3></div>
     </div>
     <!-- 鼠标右键展示内容块 -->
     <div id="mouseRight">
+    </div>
+    <div id="mouseRight1">
     </div>
     <!-- 责信度展示块 -->
     <div id="bomlist" class="con">
