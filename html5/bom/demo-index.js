@@ -102,10 +102,11 @@ function getNextId() {
     });
 }
 
-/*测试用*/
+/**
+ * 切换页面显示
+ * @param {*} view 被点击的元素id
+ */
 function showView(view) {
-    console.log("you clicked " + view);
-    debugger;
     var elements = document.getElementsByClassName("content");
     for (let i = 0; i < elements.length; i++) {
         if (elements[i].id == view + "_div") {
@@ -117,7 +118,11 @@ function showView(view) {
     }
 }
 
-/* 根据id获取数据，递归查找 */
+/**
+ * 根据id递归查找某个元素
+ * @param {*} data 待查找的树形结构
+ * @param {*} id 待查找的id
+ */
 function getDataById(data, id) {
     for (var i = 0; i < data.length; i++) {
         if (data[i].id == id) {
@@ -132,6 +137,214 @@ function getDataById(data, id) {
     }
 }
 
+/**
+ * 遍历结果
+ */
+var result = [];
+
+/**
+ * 访问单个节点
+ * @param {*} node 被访问的树节点
+ */
+function traverseNode2(node) {
+    result.push({ name: node.seq, num: node.num });
+}
+
+/**
+ * 非递归访问树节点
+ * @param {*} node 根节点，注意取到数组的根对象，不能取数组
+ */
+function traverseTree2(node) {
+    if (!node) {
+        return;
+    }
+
+    var stack = [];
+    stack.push(node);
+    var tmpNode;
+    while (stack.length > 0) {
+        tmpNode = stack.pop();
+        traverseNode2(tmpNode);
+        if (tmpNode.children && tmpNode.children.length > 0) {
+            var i = tmpNode.children.length - 1;
+            for (i = tmpNode.children.length - 1; i >= 0; i--) {
+                stack.push(tmpNode.children[i]);
+            }
+        }
+    }
+}
+
+/**
+ * 清空遍历后的结果集
+ */
+function clearTraverseResult() {
+    result = [];
+}
+
+/**
+ * 合并bom中相同的元素，根据name判断是否相同
+ * @param {*} bom 
+ */
+function mergebom(bom) {
+    var arr = [];
+
+    //合并名称零件
+    let currentName = "";
+    let currentNum = 0;
+
+    for (let i = 0; i < bom.length; i++) {
+        if (currentName != bom[i].name) {
+            if (i > 0) {
+                arr.push({ name: currentName, num: currentNum });
+            }
+            currentName = bom[i].name;
+            currentNum = bom[i].num;
+        } else {
+            currentNum += bom[i].num;
+        }
+    }
+    if (currentNum > 0) {
+        arr.push({ name: currentName, num: currentNum });
+    }
+    return arr;
+}
+
+/**
+ * 比对两个bom的名字和数量，注意比对参数的顺序
+ * @param {*} bom1 EBOM
+ * @param {*} bom2 MBOM
+ */
+function comparebom(bom1, bom2) {
+    let bom = [];
+    let m = 0;
+    let n = 0;
+    while (m < bom1.length && n < bom2.length) {
+        let result = bom1[m].name.localeCompare(bom2[n].name);
+
+        if (result == 0) {
+            //相等
+            if (bom1[m].num == bom2[n].num) {
+                //数量相同-eq
+                bom.push({ name1: bom1[m].name, name2: bom2[n].name, num1: bom1[m].num, num2: bom2[n].num, type: "eq" });
+            } else {
+                //数量不同-neq
+                bom.push({ name1: bom1[m].name, name2: bom2[n].name, num1: bom1[m].num, num2: bom2[n].num, type: "neq" });
+            }
+            m++;
+            n++;
+        } else if (result > 0) {
+            //final1较大
+            bom.push({ name1: "", name2: bom2[n].name, num1: 0, num2: bom2[n].num, type: "ru" });
+            n++;
+        } else if (result < 0) {
+            //final1较小
+            bom.push({ name1: bom1[m].name, name2: "", num1: bom1[m].num, num2: 0, type: "lu" });
+            m++;
+        }
+    }
+
+    while (m < bom1.length) {
+        bom.push({ name1: bom1[m].name, name2: "", num1: bom1[m].num, num2: 0, type: "lu" });
+        m++;
+    }
+
+    while (n < bom2.length) {
+        bom.push({ name1: "", name2: bom2[n].name, num1: 0, num2: bom2[n].num, type: "ru" });
+        n++;
+    }
+
+    return bom;
+}
+
+/**
+ * 生成最终的页面dom元素
+ * @param {*} bom 含有比对结果的BOM数组
+ */
+function createCompareResult(bom) {
+    //定义左侧列表
+    let htmlContent1 = "<ul id='con1'>";
+    htmlContent1 += "<div class='compare-title'>EBOM</div>";
+    htmlContent1 += "<li class='compare-header'>";
+    htmlContent1 += "<div class='partname'>零件名称</div>";
+    htmlContent1 += "<div class='partnum'>数量</div>";
+    htmlContent1 += "<div class='cl'></div>";
+    htmlContent1 += "</li>";
+    //定义右侧列表
+    let htmlContent2 = "<ul id='con2'>";
+    htmlContent2 += "<div class='compare-title'>MBOM</div>";
+    htmlContent2 += "<li class='compare-header'>";
+    htmlContent2 += "<div class='partname'>零件名称</div>";
+    htmlContent2 += "<div class='partnum'>数量</div>";
+    htmlContent2 += "<div class='cl'></div>";
+    htmlContent2 += "</li>";
+
+    for (let i = 0; i < bom.length; i++) {
+        if (bom[i].type == "eq") {
+            //构造左侧数据
+            htmlContent1 += "<li class='same'>";
+            htmlContent1 += "<div>" + bom[i].name1 + "</div>";
+            htmlContent1 += "<div>" + bom[i].num1 + "</div>";
+            htmlContent1 += "<div class='cl'></div>";
+            htmlContent1 += "</li>";
+            //构造右侧数据
+            htmlContent2 += "<li class='same'>";
+            htmlContent2 += "<div>" + bom[i].name2 + "</div>";
+            htmlContent2 += "<div>" + bom[i].num2 + "</div>";
+            htmlContent2 += "<div class='cl'></div>";
+            htmlContent2 += "</li>";
+        }
+        if (bom[i].type == "neq") {
+            //构造左侧数据
+            htmlContent1 += "<li class='de'>";
+            htmlContent1 += "<div>" + bom[i].name1 + "</div>";
+            htmlContent1 += "<div>" + bom[i].num1 + "</div>";
+            htmlContent1 += "<div class='cl'></div>";
+            htmlContent1 += "</li>";
+            //构造右侧数据
+            htmlContent2 += "<li class='de'>";
+            htmlContent2 += "<div>" + bom[i].name2 + "</div>";
+            htmlContent2 += "<div>" + bom[i].num2 + "</div>";
+            htmlContent2 += "<div class='cl'></div>";
+            htmlContent2 += "</li>";
+        }
+        if (bom[i].type == "lu") {
+            //构造左侧数据
+            htmlContent1 += "<li class='kong1'>";
+            htmlContent1 += "<div>" + bom[i].name1 + "</div>";
+            htmlContent1 += "<div>" + bom[i].num1 + "</div>";
+            htmlContent1 += "<div class='cl'></div>";
+            htmlContent1 += "</li>";
+            //构造右侧数据
+            htmlContent2 += "<li class='kong'>";
+            htmlContent2 += "<div> </div>";
+            htmlContent2 += "<div> </div>";
+            htmlContent2 += "<div class='cl'></div>";
+            htmlContent2 += "</li>";
+        }
+        if (bom[i].type == "ru") {
+            //构造左侧数据
+            htmlContent1 += "<li class='kong'>";
+            htmlContent1 += "<div> </div>";
+            htmlContent1 += "<div> </div>";
+            htmlContent1 += "<div class='cl'></div>";
+            htmlContent1 += "</li>";
+            //构造右侧数据
+            htmlContent2 += "<li class='kong1'>";
+            htmlContent2 += "<div>" + bom[i].name2 + "</div>";
+            htmlContent2 += "<div>" + bom[i].num2 + "</div>";
+            htmlContent2 += "<div class='cl'></div>";
+            htmlContent2 += "</li>";
+        }
+    }
+    htmlContent1 += "</ul>";
+    htmlContent2 += "</ul>";
+
+    let htmlContent = htmlContent1 + htmlContent2;
+    htmlContent += "<div class='cl'></div>";
+    return htmlContent;
+}
+
+//页面加载事件
 addLoadEvent(disableContextMenu);
 addLoadEvent(initArray);
 addLoadEvent(disablePopupDom);
@@ -159,7 +372,7 @@ layui.config({
     //表格对象
     var table = layui.table;
 
-    //测试数据
+    //测试数据MBOM
     var data = [{
         id: "000001",
         name: "顶层制造零件a",
@@ -293,10 +506,10 @@ layui.config({
                 createTime: "2019/11/18 10:44:00",
                 children: []
             }]
-        }
-        ]
+        }]
     }];
 
+    //测试数据EBOM
     var edata = [{
         id: "900001",
         name: "制造零件A",
@@ -318,7 +531,7 @@ layui.config({
         children: [{
             id: "900002",
             name: "制造零件A1",
-            seq: "MPRT-900002",
+            seq: "MPRT-000002",
             classification: "Assembly",
             version: "A",
             generation: "1",
@@ -351,7 +564,7 @@ layui.config({
                 root: false,
                 icon: "icon-ebom",
                 createTime: "2019/11/18 10:44:00",
-                children:[]
+                children: []
             },
             {
                 id: "900004",
@@ -371,7 +584,7 @@ layui.config({
                 root: false,
                 icon: "icon-ebom",
                 createTime: "2019/11/18 10:44:00",
-                children:[]
+                children: []
             }]
         },
         {
@@ -392,9 +605,9 @@ layui.config({
             root: false,
             icon: "icon-ebom",
             createTime: "2019/11/18 10:44:00",
-            children:[]
+            children: []
         }]
-    }]
+    }];
 
     //渲染表格
     var mainTreeTable = treeTable.render({
@@ -433,7 +646,7 @@ layui.config({
         style: 'margin-top:0;',
         even: false
     });
-
+    //渲染表格
     var ebomTreeTable = treeTable.render({
         elem: '#etree',
         data: edata,
@@ -676,7 +889,6 @@ layui.config({
                     moveType: 1,
                     content: $("#movelist"),
                     yes: function (index, layeritem) {
-                        debugger
                         let moveCheckedData = moveTreeTable.checkStatus();
                         if (moveCheckedData && moveCheckedData.length == 1) {
                             //obj1.data.data原节点
@@ -811,6 +1023,39 @@ layui.config({
                 });
             }
             if (obj1.type == 'checkBom') {
+                //获取MBOM全部数据
+                let mainTreeTableData = mainTreeTable.getData();
+                clearTraverseResult();
+                traverseTree2(mainTreeTableData[0]);
+                let mbomarray = result;
+
+                //获取EBOM全部数据
+                let ebomTreeTableData = ebomTreeTable.getData();
+                clearTraverseResult();
+                traverseTree2(ebomTreeTableData[0]);
+                let ebomarray = result;
+
+                mbomarray.sort(function (valueA, valueB) {
+                    let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+                    let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+                    return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+                });
+
+                ebomarray.sort(function (valueA, valueB) {
+                    let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+                    let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+                    return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+                });
+
+                mbomarray = mergebom(mbomarray);
+                ebomarray = mergebom(ebomarray);
+
+                debugger;
+
+                let bomarray = comparebom(ebomarray, mbomarray);
+                let compareDOM = createCompareResult(bomarray);
+                $("#bomlist")[0].innerHTML = compareDOM;
+
                 layer.open({
                     type: 1,
                     title: 'BOM责信度检查',
@@ -828,8 +1073,7 @@ layui.config({
         });
     });
 
-    treeTable.on('mouseRightMenu(etree)', function(obj)
-    {
+    treeTable.on('mouseRightMenu(etree)', function (obj) {
         //自定义命令
         var menu_data = [
             { 'data': obj, 'type': 'checkBom', 'title': '检查责信度', icon: 'layui-icon-list' }
@@ -840,6 +1084,39 @@ layui.config({
          */
         mouseRightMenu.open(menu_data, false, function (obj1) {
             if (obj1.type == 'checkBom') {
+                //获取MBOM全部数据
+                let mainTreeTableData = mainTreeTable.getData();
+                clearTraverseResult();
+                traverseTree2(mainTreeTableData[0]);
+                let mbomarray = result;
+
+                //获取EBOM全部数据
+                let ebomTreeTableData = ebomTreeTable.getData();
+                clearTraverseResult();
+                traverseTree2(ebomTreeTableData[0]);
+                let ebomarray = result;
+
+                mbomarray.sort(function (valueA, valueB) {
+                    let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+                    let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+                    return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+                });
+
+                ebomarray.sort(function (valueA, valueB) {
+                    let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+                    let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+                    return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+                });
+
+                mbomarray = mergebom(mbomarray);
+                ebomarray = mergebom(ebomarray);
+
+                debugger;
+
+                let bomarray = comparebom(ebomarray, mbomarray);
+                let compareDOM = createCompareResult(bomarray);
+                $("#bomlist")[0].innerHTML = compareDOM;
+
                 layer.open({
                     type: 1,
                     title: 'BOM责信度检查',
@@ -857,6 +1134,7 @@ layui.config({
         });
     });
 
+    //表格渲染
     table.render({
         elem: '#split_mtree',
         data: [],
@@ -1004,7 +1282,7 @@ layui.config({
         }
     });
 
-    //删除制造临建
+    //删除制造零件
     $("#btnDeleteMpart").click(function () {
         let mainCheckedData = mainTreeTable.checkStatus();
         if (mainCheckedData[0].root) {
@@ -1043,6 +1321,39 @@ layui.config({
 
     //检查BOM责信度
     $("#btnCheckMBom").click(function () {
+        //获取MBOM全部数据
+        let mainTreeTableData = mainTreeTable.getData();
+        clearTraverseResult();
+        traverseTree2(mainTreeTableData[0]);
+        let mbomarray = result;
+
+        //获取EBOM全部数据
+        let ebomTreeTableData = ebomTreeTable.getData();
+        clearTraverseResult();
+        traverseTree2(ebomTreeTableData[0]);
+        let ebomarray = result;
+
+        mbomarray.sort(function (valueA, valueB) {
+            let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+            let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+            return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+        });
+
+        ebomarray.sort(function (valueA, valueB) {
+            let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+            let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+            return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+        });
+
+        mbomarray = mergebom(mbomarray);
+        ebomarray = mergebom(ebomarray);
+
+        debugger;
+
+        let bomarray = comparebom(ebomarray, mbomarray);
+        let compareDOM = createCompareResult(bomarray);
+        $("#bomlist")[0].innerHTML = compareDOM;
+
         layer.open({
             type: 1,
             title: 'BOM责信度检查',
@@ -1057,8 +1368,42 @@ layui.config({
             content: $("#bomlist")
         });
     });
+
     //检查BOM责信度
     $("#btnCheckEBom").click(function () {
+        //获取MBOM全部数据
+        let mainTreeTableData = mainTreeTable.getData();
+        clearTraverseResult();
+        traverseTree2(mainTreeTableData[0]);
+        let mbomarray = result;
+
+        //获取EBOM全部数据
+        let ebomTreeTableData = ebomTreeTable.getData();
+        clearTraverseResult();
+        traverseTree2(ebomTreeTableData[0]);
+        let ebomarray = result;
+
+        mbomarray.sort(function (valueA, valueB) {
+            let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+            let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+            return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+        });
+
+        ebomarray.sort(function (valueA, valueB) {
+            let targetA = valueA != null && valueA.name != null && valueA.name.toString().toLowerCase();
+            let targetB = valueB != null && valueB.name != null && valueB.name.toString().toLowerCase();
+            return targetA != null && targetA.localeCompare ? targetA.localeCompare(targetB) : targetA - targetB;
+        });
+
+        mbomarray = mergebom(mbomarray);
+        ebomarray = mergebom(ebomarray);
+
+        debugger;
+
+        let bomarray = comparebom(ebomarray, mbomarray);
+        let compareDOM = createCompareResult(bomarray);
+        $("#bomlist")[0].innerHTML = compareDOM;
+
         layer.open({
             type: 1,
             title: 'BOM责信度检查',

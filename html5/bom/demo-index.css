@@ -636,8 +636,20 @@ body .layui-layer-tips i.layui-layer-TipsR {
     background-color: #ff5533;
 }
 .kong1 {
-    background-color: #ffbe33;
+    background-color: #fff1d2;
 }
 .kong {
-    background-color: #fff1d2;
+    background-color: lightgray;
+}
+
+.compare-title
+{
+    font-size: 1.2em;
+    line-height: 40px;
+    height: 40px;
+}
+.compare-header
+{
+    background-color: rgba(15, 14, 14, 0.767);
+    color: white;
 }
