@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="./layui/lay/modules/mouseRightMenu/mouseRightMenu.css" />
     <link rel="stylesheet" href="./demo-index.css">
+    <script src="./xmlToJson.js"></script>
 </head>
 
 <body class="page-no-scroll">
@@ -44,6 +45,9 @@
         <div id="mbom_div" class="content">
             <div class="page-wrapper">
                 <div class="layui-btn-container">
+                    <button id="btnCopyMpartFromPart" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon layui-icon-add-circle"></i>拷贝自EBOM
+                    </button>
                     <button id="btnInsertExistingMpart" class="layui-btn layui-btn-sm layui-btn-primary">
                         <i class="layui-icon layui-icon-add-circle"></i>插入已有制造零件
                     </button>
@@ -129,6 +133,7 @@
     </div>
     <script src="./layui/layui.js"></script>
     <script src="./demo-index.js"></script>
+    <script src="./demo-aras.js"></script>
 </body>
 
 </html>

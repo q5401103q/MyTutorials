@@ -56,6 +56,15 @@ function initArray() {
         return -1;
     }
 
+    Array.prototype.getElementById = function (val) {
+        for (let i = 0; i < this.length; i++) {
+            if (val == this[i].id) {
+                return this[i];
+            }
+        }
+        return null;
+    }
+
     Array.prototype.contains = function (val) {
         var index = this.indexOf(val);
         if (index > -1) {
@@ -612,7 +621,7 @@ layui.config({
     //渲染表格
     var mainTreeTable = treeTable.render({
         elem: '#mtree',
-        data: data,
+        data: [],
         tree: {
             iconIndex: 2
         },
@@ -649,7 +658,7 @@ layui.config({
     //渲染表格
     var ebomTreeTable = treeTable.render({
         elem: '#etree',
-        data: edata,
+        data: [],
         tree: {
             iconIndex: 2
         },
@@ -1182,6 +1191,55 @@ layui.config({
             });
             return;
         }
+    });
+
+    //拷贝自EBOM
+    $("#btnCopyMpartFromPart").click(function () {
+        popupDialog();
+        // //获取MBOM全部数据
+        // let mainTreeTableData = mainTreeTable.getData();
+        // let rootNode = mainTreeTableData[0];
+
+        // //渲染表格
+        // mainTreeTable = treeTable.render({
+        //     elem: '#mtree',
+        //     data: edata,
+        //     tree: {
+        //         iconIndex: 2
+        //     },
+        //     cellMinWidth: 50,
+        //     cols: [
+        //         { type: 'numbers' },
+        //         { type: 'checkbox' },
+        //         { field: 'seq', title: '物料编码', width: 600 },
+        //         //{ field: 'id', title: 'ID' },
+        //         { field: 'name', title: '名称' },
+        //         { field: 'classification', title: '物料类型' },
+        //         // { field: 'version', title: '版本' },
+        //         // { field: 'generation', title: '版次' },
+        //         // { field: 'creator', title: '创建人' },
+        //         // { field: 'state', title: '状态' },
+        //         // { field: 'material', title: '材料' },
+        //         // { field: 'standard', title: '材料规格' },
+        //         // { field: 'weight', title: '重量' },
+        //         { field: 'timequota', title: '工时定额' },
+        //         { field: 'materialquota', title: '材料定额' },
+        //         { field: 'num', title: '数量' },
+        //         {
+        //             field: 'createTime',
+        //             title: '创建时间',
+        //             templet: function (d) {
+        //                 return util.toDateString(d.createTime);
+        //             },
+        //             width: 180
+        //         }
+        //     ],
+        //     style: 'margin-top:0;',
+        //     even: false
+        // });
+
+        // mainTreeTable.reload();
+        // mainTreeTable.expandAll();
     });
 
     //插入已有制造零件
