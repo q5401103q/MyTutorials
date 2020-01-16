@@ -1,0 +1,5 @@
+C:\MyDirectory\sourcecode\net-samples\Mock\Mock.Tutorial\.vs\Mock.Tutorial\lut\0\b\Mock.Tutorial\bin\Debug\Mock.Tutorial.dll
+C:\MyDirectory\sourcecode\net-samples\Mock\Mock.Tutorial\.vs\Mock.Tutorial\lut\0\i\Mock.Tutorial\Debug\Mock.Tutorial.csprojAssemblyReference.cache
+C:\MyDirectory\sourcecode\net-samples\Mock\Mock.Tutorial\.vs\Mock.Tutorial\lut\0\i\Mock.Tutorial\Debug\Mock.Tutorial.csproj.CoreCompileInputs.cache
+C:\MyDirectory\sourcecode\net-samples\Mock\Mock.Tutorial\.vs\Mock.Tutorial\lut\0\i\Mock.Tutorial\Debug\Mock.Tutorial.csproj.CopyComplete
+C:\MyDirectory\sourcecode\net-samples\Mock\Mock.Tutorial\.vs\Mock.Tutorial\lut\0\i\Mock.Tutorial\Debug\Mock.Tutorial.dll
