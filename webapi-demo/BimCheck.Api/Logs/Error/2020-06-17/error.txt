@@ -1,0 +1,155 @@
+2020-06-17 12:15:32.9699 | Error | MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[Student] ([Student].[SId], [Student].[Sname], [Student].[Sage], [Student].[Ssex' at line 1
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.Bll.TestService.AddStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 140 MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[Student] ([Student].[SId], [Student].[Sname], [Student].[Sage], [Student].[Ssex' at line 1
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.Bll.TestService.AddStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 140 
+ <no type>.lambda_method => HomeController.AddStudent => TestService.AddStudent 
+
+2020-06-17 14:15:24.0052 | Error | System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 
+ <no type>.lambda_method => HomeController.DeleteStudent => TestService.DeleteStudent 
+
+2020-06-17 14:16:06.8248 | Error | System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 
+ <no type>.lambda_method => HomeController.DeleteStudent => TestService.DeleteStudent 
+
+2020-06-17 14:16:16.7149 | Error | System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 
+ <no type>.lambda_method => HomeController.DeleteStudent => TestService.DeleteStudent 
+
+2020-06-17 14:16:47.6689 | Error | System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 System.Reflection.TargetException: 非静态方法需要一个目标。
+   在 System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   在 System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   在 System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   在 DapperExtensions.DapperImplementor.<>c__DisplayClass22`1.<GetKeyPredicate>b__21(IPropertyMap field) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 385
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 DapperExtensions.DapperImplementor.GetKeyPredicate[T](IClassMapper classMap, T entity) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 384
+   在 DapperExtensions.DapperImplementor.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 218
+   在 DapperExtensions.DapperExtensions.Delete[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 175
+   在 BimCheck.Dal.RepositoryBase.Delete[T](Object primaryId, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 244
+   在 BimCheck.Bll.TestService.DeleteStudent(StudentSingleModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 161 
+ <no type>.lambda_method => HomeController.DeleteStudent => TestService.DeleteStudent 
+

@@ -1,0 +1,136 @@
+2020-06-15 12:59:45.8168 | Error | System.InvalidOperationException: 事务不是与当前连接无关联，就是已完成。
+   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34 System.InvalidOperationException: 事务不是与当前连接无关联，就是已完成。
+   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34 
+ <no type>.lambda_method => HomeController.AddStudent => TestService.AddStudent 
+
+2020-06-15 13:03:57.1689 | Error | System.InvalidOperationException: 事务不是与当前连接无关联，就是已完成。
+   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34 System.InvalidOperationException: 事务不是与当前连接无关联，就是已完成。
+   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34 
+ <no type>.lambda_method => HomeController.AddStudent => TestService.AddStudent 
+
+2020-06-15 13:28:21.7352 | Error | System.Data.SqlClient.SqlException (0x80131904): 不能将值 NULL 插入列 'SId'，表 'TestServer.dbo.student'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34
+ClientConnectionId:7b413d1e-bc4d-4f89-945f-6e0ad0ce2990
+Error Number:515,State:2,Class:16 System.Data.SqlClient.SqlException (0x80131904): 不能将值 NULL 插入列 'SId'，表 'TestServer.dbo.student'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34
+ClientConnectionId:7b413d1e-bc4d-4f89-945f-6e0ad0ce2990
+Error Number:515,State:2,Class:16 
+ <no type>.lambda_method => HomeController.AddStudent => TestService.AddStudent 
+
+2020-06-15 13:28:59.5919 | Error | System.Data.SqlClient.SqlException (0x80131904): 不能将值 NULL 插入列 'SId'，表 'TestServer.dbo.student'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34
+ClientConnectionId:7b413d1e-bc4d-4f89-945f-6e0ad0ce2990
+Error Number:515,State:2,Class:16 System.Data.SqlClient.SqlException (0x80131904): 不能将值 NULL 插入列 'SId'，表 'TestServer.dbo.student'；列不允许有 Null 值。INSERT 失败。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   在 DapperExtensions.DapperImplementor.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperImplementor.cs:行号 174
+   在 DapperExtensions.DapperExtensions.Insert[T](IDbConnection connection, T entity, IDbTransaction transaction, Nullable`1 commandTimeout) 位置 c:\Projects\nuget\PhenixDev\DapperExtensions\DapperExtensions\DapperExtensions.cs:行号 159
+   在 BimCheck.Dal.RepositoryBase.Insert[T](T entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Dal\RepositoryBase.cs:行号 216
+   在 BimCheck.IBll.ServiceBase.Insert[T1,T2](T1 entity, IDbTransaction transaction) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.IBll\ServiceBase.cs:行号 137
+   在 BimCheck.Bll.TestService.AddStudent(StudentModel model) 位置 D:\20200527_bimcheck\BimCheck.Solution\BimCheck.Bll\TestService.cs:行号 34
+ClientConnectionId:7b413d1e-bc4d-4f89-945f-6e0ad0ce2990
+Error Number:515,State:2,Class:16 
+ <no type>.lambda_method => HomeController.AddStudent => TestService.AddStudent 
+
