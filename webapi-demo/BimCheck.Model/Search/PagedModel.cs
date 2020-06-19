@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,10 @@ namespace BimCheck.Model.Search
     /// </summary>
     public abstract class PagedModel : BaseModel
     {
+        [JsonProperty("pageindex")]
         public int PageIndex { get; set; }
 
+        [JsonProperty("pagesize")]
         public int PageSize { get; set; }
     }
 }

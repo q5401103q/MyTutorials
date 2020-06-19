@@ -14,26 +14,28 @@ namespace BimCheck.Api.Core
     {
         /// <summary>
         /// 错误代码
-        /// 0 => 请求成功
+        /// 200 => 请求成功
         /// 其他 => 请求失败
         /// </summary>
-        public int code { get; set; }
+        [JsonProperty("code")]
+        public int Code { get; set; }
         /// <summary>
         /// 错误信息
         /// </summary>
-        public string msg { get; set; }
+        [JsonProperty("msg")]
+        public string Message { get; set; }
         /// <summary>
         /// 业务数据
         /// </summary>
-        public object result { get; set; }
-
+        [JsonProperty("result")]
+        public object Result { get; set; }
         /// <summary>
         /// 重写方法
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented, CustomJsonSerializer.GetSerializerSetting());
+            return JsonConvert.SerializeObject(this, Formatting.None, CustomJsonSerializer.GetSerializerSetting());
         }
     }
 }

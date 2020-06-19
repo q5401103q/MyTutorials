@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -56,12 +59,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBase.cs" />
     <Compile Include="TestService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BimCheck.Common\BimCheck.Common.csproj">
+      <Project>{8A336852-C0CB-4F97-B8DF-D9C6B41B42F4}</Project>
+      <Name>BimCheck.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BimCheck.IBll\BimCheck.IBll.csproj">
       <Project>{B35597F6-7A3C-45FB-894A-C26DC6064A79}</Project>
       <Name>BimCheck.IBll</Name>

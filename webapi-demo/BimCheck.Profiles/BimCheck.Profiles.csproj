@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentProfile.cs" />
+    <Compile Include="T_UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BimCheck.Model\BimCheck.Model.csproj">

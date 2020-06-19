@@ -86,5 +86,50 @@ namespace BimCheck.Model {
                 return ResourceManager.GetString("1003", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 密码不能为空 的本地化字符串。
+        /// </summary>
+        public static string _1004 {
+            get {
+                return ResourceManager.GetString("1004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 邮箱格式不正确 的本地化字符串。
+        /// </summary>
+        public static string _1005 {
+            get {
+                return ResourceManager.GetString("1005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 手机号码格式不正确 的本地化字符串。
+        /// </summary>
+        public static string _1006 {
+            get {
+                return ResourceManager.GetString("1006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 用户名包含非法字符 的本地化字符串。
+        /// </summary>
+        public static string _1007 {
+            get {
+                return ResourceManager.GetString("1007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 密码长度需要在6-12位，请重新核对 的本地化字符串。
+        /// </summary>
+        public static string _1008 {
+            get {
+                return ResourceManager.GetString("1008", resourceCulture);
+            }
+        }
     }
 }

@@ -37,6 +37,9 @@
     <Reference Include="FluentValidation.ValidatorAttribute, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.ValidatorAttribute.8.6.1\lib\net45\FluentValidation.ValidatorAttribute.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -53,7 +56,9 @@
   <ItemGroup>
     <Compile Include="Dto\StudentDto.cs" />
     <Compile Include="Dto\PagedDto.cs" />
+    <Compile Include="Dto\T_UserDto.cs" />
     <Compile Include="Entity\Student.cs" />
+    <Compile Include="Entity\T_User.cs" />
     <Compile Include="Errors1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,6 +69,7 @@
     <Compile Include="Search\PagedModel.cs" />
     <Compile Include="Search\StudentSingleModel.cs" />
     <Compile Include="Search\StudentPagedModel.cs" />
+    <Compile Include="Search\T_UserSingleModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -73,6 +79,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Errors1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BimCheck.Common\BimCheck.Common.csproj">
+      <Project>{8A336852-C0CB-4F97-B8DF-D9C6B41B42F4}</Project>
+      <Name>BimCheck.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

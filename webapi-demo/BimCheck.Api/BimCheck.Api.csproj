@@ -32,7 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>1591</NoWarn>
+    <NoWarn>1591,0162</NoWarn>
     <DocumentationFile>bin\BimCheck.Api.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -212,28 +212,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\DapperConfig.cs" />
+    <Compile Include="App_Start\OAuth2Config.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Core\CustomJsonSerializer.cs" />
-    <Compile Include="Core\GlobalExceptionFilter.cs" />
-    <Compile Include="Core\JsonResult.cs" />
-    <Compile Include="Core\JsonResultBuilder.cs" />
-    <Compile Include="Core\JsonResultCode.cs" />
-    <Compile Include="Core\LoggingModule.cs" />
-    <Compile Include="Core\SimpleAuthorizationServerProvider.cs" />
-    <Compile Include="Core\ValidateModelStateFilter.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\TokenSampleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Core\Filter\SimpleAuthorizationFilter.cs" />
+    <Compile Include="Core\Json\CustomJsonSerializer.cs" />
+    <Compile Include="Core\Filter\GlobalExceptionFilter.cs" />
+    <Compile Include="Core\Json\JsonResult.cs" />
+    <Compile Include="Core\Json\JsonResultBuilder.cs" />
+    <Compile Include="Core\Json\JsonResultCode.cs" />
+    <Compile Include="Core\Log\LoggingModule.cs" />
+    <Compile Include="Core\Filter\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Core\Filter\ValidateModelStateFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using BimCheck.IBll;
 using BimCheck.Model.Search;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -10,6 +11,9 @@ using System.Web.Http;
 
 namespace BimCheck.Api.Controllers
 {
+    /// <summary>
+    /// 示例用的接口
+    /// </summary>
     public class HomeController : ApiController
     {
         /// <summary>
@@ -43,7 +47,7 @@ namespace BimCheck.Api.Controllers
             var data = new JsonResultBuilder()
                                 .SetCode(JsonResultCode.OK)
                                 .SetMessage("success")
-                                .SetResult(result.data, result.count).Build();
+                                .SetResult(result.Data, result.Count).Build();
 
             return new HttpResponseMessage()
             {
@@ -193,8 +197,10 @@ namespace BimCheck.Api.Controllers
         }
 
         [HttpDelete]
+        [AllowAnonymous]
         public HttpResponseMessage DeleteStudent([FromBody]StudentSingleModel model)
         {
+            throw new ArgumentException("无效的请求参数");
 #pragma warning disable IDE0059 // 从不使用分配给符号的值
             var result = _testService.DeleteStudent(model);
 #pragma warning restore IDE0059 // 从不使用分配给符号的值

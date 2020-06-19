@@ -22,7 +22,13 @@ namespace BimCheck.Api
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //配置FluentValidation校验
+            //配置OAuth的Filter
+            config.Filters.Add(new SimpleAuthorizationFilter());
+
+            //配置全局异常Filter
+            config.Filters.Add(new GlobalExceptionFilter());
+
+            //配置FluentValidation校验Filter
             config.Filters.Add(new ValidateModelStateFilter());
             FluentValidationModelValidatorProvider.Configure(config);
         }

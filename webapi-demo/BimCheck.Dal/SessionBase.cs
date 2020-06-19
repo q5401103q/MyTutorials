@@ -15,7 +15,13 @@ namespace BimCheck.Dal
     /// </summary>
     public class SessionBase : ISession
     {
+        /// <summary>
+        /// 数据库连接
+        /// </summary>
         private IDbConnection _connection;
+        /// <summary>
+        /// 事务
+        /// </summary>
         private IDbTransaction _transaction;
 
         /// <summary>

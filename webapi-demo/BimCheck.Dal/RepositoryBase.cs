@@ -17,6 +17,7 @@ namespace BimCheck.Dal
     /// </summary>
     public class RepositoryBase : IDataRepository
     {
+        #region 属性
         /// <summary>
         /// 私有变量
         /// </summary>
@@ -29,7 +30,9 @@ namespace BimCheck.Dal
         {
             get { return _session; }
         }
+        #endregion
 
+        #region 构造函数
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -43,6 +46,7 @@ namespace BimCheck.Dal
         {
             this._session = session;
         }
+        #endregion
 
         #region 查询
         /// <summary>
@@ -51,209 +55,212 @@ namespace BimCheck.Dal
         /// <typeparam name="T"></typeparam>
         /// <param name="primaryId"></param>
         /// <returns></returns>
-        public T GetById<T>(dynamic primaryId, IDbTransaction transaction = null) where T : class
+        public T Get<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
         {
-            return _session.Connection.Get<T>(primaryId as object, transaction);
+            return _session.Connection.Get<T>(id as object, transaction, commandTimeout);
         }
-
         /// <summary>
-        /// 获取全部数据集合
+        /// 根据查询语句获取数据
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="sql">查询语句</param>
+        /// <param name="param">查询参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
         /// <returns></returns>
-        public IEnumerable<T> GetAll<T>() where T : class
+        public T GetFirstOrDefault<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) where T : class
         {
-            return _session.Connection.GetList<T>();
+            return SqlMapper.QueryFirstOrDefault<T>(_session.Connection, sql, param as object, transaction, commandTimeout, commandType);
         }
-
         /// <summary>
-        /// 根据条件筛选出数据集合
+        /// 根据查询语句获取数据
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sql"></param>
-        /// <param name="param"></param>
-        /// <param name="transaction"></param>
-        /// <param name="buffered"></param>
+        /// <param name="sql">查询语句</param>
+        /// <param name="param">查询参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
         /// <returns></returns>
-        public IEnumerable<T> Get<T>(string sql, dynamic param = null, bool buffered = true) where T : class
+        public dynamic GetFirstOrDefault(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
-            return SqlMapper.Query<T>(_session.Connection, sql, param as object, _session.Transaction, buffered);
+            return SqlMapper.QueryFirstOrDefault(_session.Connection, sql, param as object, transaction, commandTimeout, commandType);
         }
-
         /// <summary>
-        /// 根据条件筛选数据集合
+        /// 根据查询语句获取对象列表
         /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="param"></param>
-        /// <param name="transaction"></param>
-        /// <param name="buffered"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="sql">查询语句</param>
+        /// <param name="param">查询参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="buffered">使用缓存</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
         /// <returns></returns>
-        public IEnumerable<dynamic> Get(string sql, dynamic param = null, bool buffered = true)
+        public IEnumerable<T> GetList<T>(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null) where T : class
         {
-            return SqlMapper.Query(_session.Connection, sql, param as object, _session.Transaction, buffered);
+            return SqlMapper.Query<T>(_session.Connection, sql, param, transaction, buffered, commandTimeout, commandType);
         }
-
         /// <summary>
-        /// 统计记录总数
+        /// 根据表达式获取对象列表
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="predicate"></param>
-        /// <param name="buffered"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="predicate">表达式</param>
+        /// <param name="sort">排序字段</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="buffered">使用缓冲区</param>
         /// <returns></returns>
-        public int Count<T>(IPredicate predicate, bool buffered = false) where T : class
+        public IEnumerable<T> GetList<T>(object predicate = null, IList<ISort> sort = null, IDbTransaction transaction = null, int? commandTimeout = null, bool buffered = false) where T : class
         {
-            return _session.Connection.Count<T>(predicate);
+            return _session.Connection.GetList<T>(predicate, sort, transaction, commandTimeout, buffered);
         }
-
         /// <summary>
-        /// 查询列表数据
+        /// 根据SQL语句获取对象列表
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="predicate"></param>
-        /// <param name="sort"></param>
-        /// <param name="buffered"></param>
+        /// <param name="sql">查询语句</param>
+        /// <param name="param">查询参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="buffered">使用缓存</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
         /// <returns></returns>
-        public IEnumerable<T> GetList<T>(IPredicate predicate = null, IList<ISort> sort = null, bool buffered = false) where T : class
+        public IEnumerable<dynamic> GetList(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null)
         {
-            return _session.Connection.GetList<T>(predicate, sort, null, null, buffered);
+            return SqlMapper.Query(_session.Connection, sql, param as object, transaction, buffered, commandTimeout, commandType);
         }
-
         /// <summary>
-        /// 分页
+        /// 获取总条数
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="allRowsCount"></param>
-        /// <param name="predicate"></param>
-        /// <param name="sort"></param>
-        /// <param name="buffered"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="predicate">表达式</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        public IEnumerable<T> GetPage<T>(int pageIndex, int pageSize, out long allRowsCount, IPredicate predicate = null, ISort sort = null, bool buffered = true) where T : class
+        public int Count<T>(IPredicate predicate, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
         {
-            IList<ISort> orderBy = new List<ISort>();
-            orderBy.Add(sort);
-
-            return GetPage<T>(pageIndex, pageSize, out allRowsCount, predicate, orderBy, buffered);
+            return _session.Connection.Count<T>(predicate, transaction, commandTimeout);
         }
-
         /// <summary>
-        /// 分页
+        /// 分页查询
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="allRowsCount"></param>
-        /// <param name="predicate"></param>
-        /// <param name="sort"></param>
-        /// <param name="buffered"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="pageIndex">页码，开始于0</param>
+        /// <param name="pageSize">条数</param>
+        /// <param name="allRowsCount">总条数</param>
+        /// <param name="predicate">表达式</param>
+        /// <param name="sort">排序</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="buffered">使用缓冲区</param>
         /// <returns></returns>
-        public IEnumerable<T> GetPage<T>(int pageIndex, int pageSize, out long allRowsCount, IPredicate predicate, IList<ISort> sort, bool buffered = true) where T : class
+        public IEnumerable<T> GetPage<T>(int pageIndex, int pageSize, out long allRowsCount, IPredicate predicate, IList<ISort> sort, IDbTransaction transaction = null, int? commandTimeout = null, bool buffered = false) where T : class
         {
-            IEnumerable<T> entityList = _session.Connection.GetPage<T>(predicate, sort, pageIndex, pageSize, null, null, buffered);
-            allRowsCount = _session.Connection.Count<T>(predicate);
+            IEnumerable<T> entityList = _session.Connection.GetPage<T>(predicate, sort, pageIndex, pageSize, transaction, commandTimeout, buffered);
+            allRowsCount = _session.Connection.Count<T>(predicate, transaction, commandTimeout);
 
             return entityList;
         }
+        #endregion
 
+        #region 执行SQL
         /// <summary>
-        /// 根据表达式筛选
+        /// 执行SQL语句
         /// </summary>
-        /// <typeparam name="TFirst"></typeparam>
-        /// <typeparam name="TSecond"></typeparam>
-        /// <typeparam name="TReturn"></typeparam>
-        /// <param name="sql"></param>
-        /// <param name="map"></param>
-        /// <param name="param"></param>
-        /// <param name="transaction"></param>
-        /// <param name="buffered"></param>
-        /// <param name="splitOn"></param>
-        /// <param name="commandTimeout"></param>
+        /// <param name="sql">语句</param>
+        /// <param name="param">参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">类型包括文本或存储过程等</param>
         /// <returns></returns>
-        public IEnumerable<TReturn> Get<TFirst, TSecond, TReturn>(string sql, Func<TFirst, TSecond, TReturn> map, dynamic param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null)
+        public int Execute(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
-            return SqlMapper.Query(_session.Connection, sql, map, param as object, transaction, buffered, splitOn);
-        }
-
-        /// <summary>
-        /// 获取多实体集合
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="param"></param>
-        /// <param name="transaction"></param>
-        /// <param name="commandTimeout"></param>
-        /// <param name="commandType"></param>
-        /// <returns></returns>
-        public SqlMapper.GridReader GetMultiple(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
-        {
-            throw new NotImplementedException();
+            return SqlMapper.Execute(_session.Connection, sql, param as object, transaction, commandTimeout, commandType);
         }
         #endregion
 
-        #region 执行
+        #region 插入操作
         /// <summary>
-        /// 执行sql操作
+        /// 插入对象
         /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="param"></param>
-        /// <returns>受影响的行数</returns>
-        public int Execute(string sql, dynamic param = null, IDbTransaction transaction = null)
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="entity">对象实例</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <returns></returns>
+        public dynamic Insert<T>(T entity, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
         {
-            return _session.Connection.Execute(sql, param as object, transaction);
+            return _session.Connection.Insert<T>(entity, transaction, commandTimeout);
+        }
+
+        /// <summary>
+        /// 批量插入对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="entities">对象实例列表</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        public void Insert<T>(IEnumerable<T> entities, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
+        {
+            _session.Connection.Insert<T>(entities, transaction, commandTimeout);
         }
         #endregion
 
-        #region 插入
+        #region 更新操作
         /// <summary>
-        /// 插入单条记录
+        /// 更新对象
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="entity"></param>
-        /// <param name="transaction"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="entity">对象实例</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        public dynamic Insert<T>(T entity, IDbTransaction transaction = null) where T : class
+        public bool Update<T>(T entity, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
         {
-            return _session.Connection.Insert<T>(entity, transaction);
+            return _session.Connection.Update<T>(entity, transaction, commandTimeout);
         }
         #endregion
 
-        #region 更新
+        #region 删除操作
         /// <summary>
-        /// 更新单条记录
+        /// 根据ID删除对象
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="entity"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="id">主键</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        public bool Update<T>(T entity, IDbTransaction transaction = null) where T : class
+        public bool Delete<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
         {
-            return _session.Connection.Update<T>(entity, transaction);
-        }
-        #endregion
-
-        #region 删除
-        /// <summary>
-        /// 删除单条记录
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="primaryId">主键</param>
-        /// <returns></returns>
-        public bool Delete<T>(dynamic primaryId, IDbTransaction transaction = null) where T : class
-        {
-            var entity = GetById<T>(primaryId, transaction);
+            var entity = Get<T>(id, transaction);
             var obj = entity as T;
-            return _session.Connection.Delete<T>(obj, transaction);
+            return _session.Connection.Delete<T>(obj, transaction, commandTimeout);
         }
 
         /// <summary>
-        /// 删除单条记录
+        /// 根据表达式删除对象
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="predicate"></param>
-        /// <param name="transaction"></param>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="predicate">表达式</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        public bool Delete<T>(IPredicate predicate, IDbTransaction transaction = null) where T : class
+        public bool Delete<T>(IPredicate predicate, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
         {
-            return _session.Connection.Delete<T>(predicate, transaction);
+            return _session.Connection.Delete<T>(predicate, transaction, commandTimeout);
+        }
+
+        /// <summary>
+        /// 根据实例删除对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="entity">对象实例</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置秒（秒）</param>
+        /// <returns></returns>
+        public bool Delete<T>(T entity, IDbTransaction transaction = null, int? commandTimeout = null) where T : class
+        {
+            return _session.Connection.Delete<T>(entity, transaction, commandTimeout);
         }
         #endregion
     }

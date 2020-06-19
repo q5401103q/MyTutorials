@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,10 @@ namespace BimCheck.Model.Search
     [Validator(typeof(StudentPagedModelValidator))]
     public class StudentPagedModel : PagedModel
     {
+        [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("sex")]
         public string Sex { get; set; }
     }
 

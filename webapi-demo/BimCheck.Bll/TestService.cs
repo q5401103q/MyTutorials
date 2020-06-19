@@ -1,10 +1,10 @@
-﻿using BimCheck.IBll;
+﻿using BimCheck.Common;
+using BimCheck.IBll;
 using BimCheck.IDal;
 using BimCheck.Model.Dto;
 using BimCheck.Model.Entity;
 using BimCheck.Model.Search;
 using DapperExtensions;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,9 +18,13 @@ namespace BimCheck.Bll
     /// </summary>
     public class TestService : ServiceBase, ITestService
     {
+        /// <summary>
+        /// 构造函数注入
+        /// </summary>
+        /// <param name="dataRepository"></param>
         public TestService(IDataRepository dataRepository)
         {
-            base.DataRepository = dataRepository;
+            DataRepository = dataRepository;
         }
 
         /// <summary>
@@ -30,7 +34,8 @@ namespace BimCheck.Bll
         /// <returns></returns>
         public StudentDto GetStudentById(string id)
         {
-            return this.GetById<StudentDto, Student>(id);
+            var student = DataRepository.Get<Student>(id);
+            return AutoMapperHelper<Student, StudentDto>.AutoConvert(student);
         }
 
         /// <summary>
@@ -43,15 +48,15 @@ namespace BimCheck.Bll
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM DBO.STUDENT ");
             sb.Append("WHERE 1=1 ");
-
             if (!string.IsNullOrEmpty(model.Name))
             {
                 sb.Append("AND SNAME LIKE @TMP_NAME ");
             }
-
             sb.Append("ORDER BY SID");
 
-            return this.Get<StudentDto, Student>(sb.ToString(), new { TMP_NAME = $"%{model.Name}%" });
+            var students = DataRepository.GetList<Student>(sb.ToString(), new { TMP_NAME = $"%{model.Name}%" });
+
+            return AutoMapperHelper<IEnumerable<Student>, IEnumerable<StudentDto>>.AutoConvert(students);
         }
 
         /// <summary>
@@ -61,12 +66,13 @@ namespace BimCheck.Bll
         /// <returns></returns>
         public IEnumerable<StudentDto> GetStudentsByIds(List<dynamic> ids)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT * FROM DBO.STUDENT WHERE SID IN (@ids)");
+            var sql = "SELECT * FROM DBO.STUDENT WHERE SID IN ('@ids')";
 
-            var idsIn = $"'{string.Join("','", ids)}'";
+            var idsIn = string.Join("','", ids);
 
-            return this.Get<StudentDto, Student>(sb.ToString(), new { ids = idsIn });
+            var students = DataRepository.GetList<Student>(sql, new { ids = idsIn });
+
+            return AutoMapperHelper<IEnumerable<Student>, IEnumerable<StudentDto>>.AutoConvert(students);
         }
 
         /// <summary>
@@ -86,7 +92,9 @@ namespace BimCheck.Bll
             sb.Append("ON SC.CID = CO.CID ");
             sb.Append("WHERE SC.SID=@TMP_ID");
 
-            return base.Get<dynamic, dynamic>(sb.ToString(), new { TMP_ID = id });
+            var data = DataRepository.GetList<dynamic>(sb.ToString(), new { TMP_ID = id });
+
+            return AutoMapperHelper<dynamic, dynamic>.AutoConvertDynamic(data);
         }
 
         /// <summary>
@@ -115,11 +123,13 @@ namespace BimCheck.Bll
                 new Sort() { PropertyName = "sage", Ascending = false }
             };
 
-            var dataList = this.GetPage<StudentDto, Student>(model.PageIndex, model.PageSize, out long totalCount, predicateGroup, sort);
+            var students = DataRepository.GetPage<Student>(model.PageIndex, model.PageSize, out long totalCount, predicateGroup, sort);
+            var dataList = AutoMapperHelper<IEnumerable<Student>, IEnumerable<StudentDto>>.AutoConvert(students);
+
             return new PagedDto()
             {
-                count = totalCount,
-                data = dataList
+                Count = totalCount,
+                Data = dataList
             };
         }
 
@@ -130,21 +140,21 @@ namespace BimCheck.Bll
         /// <returns></returns>
         public dynamic AddStudent(StudentSingleModel model)
         {
-            var transaction = base.DataRepository.Session.Begin();
+            var transaction = DataRepository.Session.Begin();
             try
             {
                 var student = AutoMapperHelper<StudentSingleModel, Student>.AutoConvert(model);
-                var itemId = base.DataRepository.Insert<Student>(student, transaction);
-                base.DataRepository.Session.Commit();
+                var itemId = DataRepository.Insert<Student>(student, transaction);
+                DataRepository.Session.Commit();
 
                 return itemId;
             }
             catch (Exception ex)
             {
-                base.DataRepository.Session.Rollback();
+                DataRepository.Session.Rollback();
                 logger.Error(ex);
 
-                return 0;
+                return string.Empty;
             }
         }
 
@@ -155,17 +165,17 @@ namespace BimCheck.Bll
         /// <returns></returns>
         public bool DeleteStudent(StudentSingleModel model)
         {
-            var transaction = base.DataRepository.Session.Begin();
+            var transaction = DataRepository.Session.Begin();
             try
             {
-                var rowsAffected = base.DataRepository.Delete<Student>(model.Id, transaction);
-                base.DataRepository.Session.Commit();
+                var rowsAffected = DataRepository.Delete<Student>(model.Id, transaction);
+                DataRepository.Session.Commit();
 
                 return rowsAffected;
             }
             catch (Exception ex)
             {
-                base.DataRepository.Session.Rollback();
+                DataRepository.Session.Rollback();
                 logger.Error(ex);
 
                 return false;
@@ -179,22 +189,22 @@ namespace BimCheck.Bll
         /// <returns></returns>
         public bool UpdateStudent(StudentSingleModel model)
         {
-            var student = this.DataRepository.GetById<Student>(model.Id);
+            var student = DataRepository.Get<Student>(model.Id);
             student.Sage = model.Age;
             student.Sname = model.Name;
             student.Ssex = model.Sex;
 
-            var transaction = base.DataRepository.Session.Begin();
+            var transaction = DataRepository.Session.Begin();
             try
             {     
-                var flag = this.DataRepository.Update(student, transaction);
-                base.DataRepository.Session.Commit();
+                var flag = DataRepository.Update(student, transaction);
+                DataRepository.Session.Commit();
 
                 return flag;
             }
             catch (Exception ex)
             {
-                base.DataRepository.Session.Rollback();
+                DataRepository.Session.Rollback();
                 logger.Error(ex);
 
                 return false;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BimCheck.IBll
+namespace BimCheck.Common
 {
     /// <summary>
     /// 作者：liuzl 

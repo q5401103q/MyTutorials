@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,13 @@ namespace BimCheck.Model.Dto
         /// <summary>
         /// 总条数
         /// </summary>
-        public long count { get; set; }
+        [JsonProperty("count")]
+        public long Count { get; set; }
 
         /// <summary>
         /// 数据
         /// </summary>
-        public object data { get; set; }
+        [JsonProperty("data")]
+        public object Data { get; set; }
     }
 }

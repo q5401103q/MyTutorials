@@ -126,4 +126,19 @@
   <data name="1003" xml:space="preserve">
     <value>记录条数PageSize必须为大于1的正整数</value>
   </data>
+  <data name="1004" xml:space="preserve">
+    <value>密码不能为空</value>
+  </data>
+  <data name="1005" xml:space="preserve">
+    <value>邮箱格式不正确</value>
+  </data>
+  <data name="1006" xml:space="preserve">
+    <value>手机号码格式不正确</value>
+  </data>
+  <data name="1007" xml:space="preserve">
+    <value>用户名包含非法字符</value>
+  </data>
+  <data name="1008" xml:space="preserve">
+    <value>密码长度需要在6-12位，请重新核对</value>
+  </data>
 </root>

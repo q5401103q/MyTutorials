@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,16 +17,19 @@ namespace BimCheck.Model.Dto
         /// <summary>
         /// 主键
         /// </summary>
+        [JsonProperty("id")]
         public string Id { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
+        [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// 生日
         /// </summary>
+        [JsonProperty("age")]
         public DateTime? Age { get; set; }
     }
 }

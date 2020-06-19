@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace BimCheck.Model.Search
     [Validator(typeof(StudentSingleModelValidator))]
     public class StudentSingleModel : BaseModel
     {
+        [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("sex")]
         public string Sex { get; set; }
 
+        [JsonProperty("age")]
         public DateTime? Age { get; set; }
     }
 

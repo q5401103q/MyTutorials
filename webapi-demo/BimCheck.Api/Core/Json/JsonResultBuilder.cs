@@ -7,21 +7,21 @@ using System.Web;
 namespace BimCheck.Api.Core
 {
     /// <summary>
-    /// JsonResult建造者
+    /// JsonResult建造者模式
     /// </summary>
     public class JsonResultBuilder
     {
         /// <summary>
         /// 内部持有对象
         /// </summary>
-        private JsonResult jsonResult;
+        private JsonResult _jsonResult;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public JsonResultBuilder()
         {
-            this.jsonResult = new JsonResult();
+            this._jsonResult = new JsonResult();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace BimCheck.Api.Core
         /// <returns></returns>
         public JsonResultBuilder SetCode(int code)
         {
-            jsonResult.code = code;
+            _jsonResult.Code = code;
             return this;
         }
 
@@ -42,7 +42,7 @@ namespace BimCheck.Api.Core
         /// <returns></returns>
         public JsonResultBuilder SetMessage(string msg)
         {
-            jsonResult.msg = msg;
+            _jsonResult.Message = msg;
             return this;
         }
 
@@ -53,7 +53,7 @@ namespace BimCheck.Api.Core
         /// <returns></returns>
         public JsonResultBuilder SetResult(object result)
         {
-            jsonResult.result = new
+            _jsonResult.Result = new
             {
                 data = result
             };
@@ -68,7 +68,7 @@ namespace BimCheck.Api.Core
         /// <returns></returns>
         public JsonResultBuilder SetResult(object result, long count)
         {
-            jsonResult.result = new
+            _jsonResult.Result = new
             {
                 count,
                 data = result
@@ -82,7 +82,7 @@ namespace BimCheck.Api.Core
         /// <returns></returns>
         public JsonResultBuilder SetEmptyResult()
         {
-            jsonResult.result = new { };
+            _jsonResult.Result = new { };
             return this;
         }
 
@@ -92,7 +92,7 @@ namespace BimCheck.Api.Core
         /// <returns></returns>
         public JsonResult Build()
         {
-            return jsonResult;
+            return _jsonResult;
         }
     }
 }

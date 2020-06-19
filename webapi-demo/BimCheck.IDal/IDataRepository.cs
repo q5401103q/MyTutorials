@@ -23,60 +23,69 @@ namespace BimCheck.IDal
 
         #region 查询接口
         /// <summary>
-        /// 根据主键获取单个对象
+        /// 根据id获取单个对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="primaryId">主键</param>
-        /// <returns>对象实例</returns>
-        T GetById<T>(dynamic primaryId, IDbTransaction transaction = null) where T : class;
+        /// <param name="id">主键</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <returns></returns>
+        T Get<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         /// <summary>
-        /// 获取全部对象列表
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <returns>对象实例列表</returns>
-        IEnumerable<T> GetAll<T>() where T : class;
-        /// <summary>
-        /// 根据SQL语句返回查询结果
+        /// 根据查询语句获取数据
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="sql">查询语句</param>
-        /// <param name="param">查询参数</param>
-        /// <param name="buffered">使用缓冲区</param>
-        /// <returns>对象实例列表</returns>
-        IEnumerable<T> Get<T>(string sql, dynamic param = null, bool buffered = true) where T : class;
-        /// <summary>
-        /// 根据SQL语句返回查询结果
-        /// </summary>
-        /// <param name="sql">查询语句</param>
-        /// <param name="param">查询参数</param>
-        /// <param name="buffered">使用缓冲区</param>
-        /// <returns>动态实例列表</returns>
-        IEnumerable<dynamic> Get(string sql, dynamic param = null, bool buffered = true);
-        /// <summary>
-        /// 根据SQL语句返回查询结果
-        /// </summary>
-        /// <typeparam name="TFirst">泛型一</typeparam>
-        /// <typeparam name="TSecond">泛型二</typeparam>
-        /// <typeparam name="TReturn">泛型三</typeparam>
-        /// <param name="sql">查询语句</param>
-        /// <param name="map">映射规则</param>
         /// <param name="param">查询参数</param>
         /// <param name="transaction">事务</param>
-        /// <param name="buffered">使用缓冲区</param>
-        /// <param name="splitOn">字段</param>
-        /// <param name="commandTimeout">超时设置</param>
-        /// <returns>动态实例列表</returns>
-        IEnumerable<TReturn> Get<TFirst, TSecond, TReturn>(string sql, Func<TFirst, TSecond, TReturn> map, dynamic param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null);
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
+        /// <returns></returns>
+        T GetFirstOrDefault<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) where T : class;
         /// <summary>
-        /// 根据SQL语句返回多个查询结果
+        /// 根据查询语句获取数据
         /// </summary>
-        /// <param name="sql">多条SQL语句</param>
+        /// <param name="sql">查询语句</param>
         /// <param name="param">查询参数</param>
         /// <param name="transaction">事务</param>
-        /// <param name="commandTimeout">超时设置</param>
-        /// <param name="commandType">命令类型</param>
-        /// <returns>多条查询结果</returns>
-        SqlMapper.GridReader GetMultiple(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
+        /// <returns></returns>
+        dynamic GetFirstOrDefault(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+        /// <summary>
+        /// 根据查询语句获取对象列表
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="sql">查询语句</param>
+        /// <param name="param">查询参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="buffered">使用缓存</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
+        /// <returns></returns>
+        IEnumerable<T> GetList<T>(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null) where T : class;
+        /// <summary>
+        /// 根据表达式获取对象列表
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="predicate">表达式</param>
+        /// <param name="sort">排序字段</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="buffered">使用缓冲区</param>
+        /// <returns></returns>
+        IEnumerable<T> GetList<T>(object predicate = null, IList<ISort> sort = null, IDbTransaction transaction = null, int? commandTimeout = null, bool buffered = false) where T : class;
+        /// <summary>
+        /// 根据SQL语句获取对象列表
+        /// </summary>
+        /// <param name="sql">查询语句</param>
+        /// <param name="param">查询参数</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="buffered">使用缓存</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
+        /// <returns></returns>
+        IEnumerable<dynamic> GetList(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null);
         /// <summary>
         /// 查询记录条数
         /// </summary>
@@ -84,28 +93,7 @@ namespace BimCheck.IDal
         /// <param name="predicate">表达式</param>
         /// <param name="buffered">使用缓冲区</param>
         /// <returns>满足表达式的记录条数</returns>
-        int Count<T>(IPredicate predicate, bool buffered = false) where T : class;
-        /// <summary>
-        /// 查询记录列表
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="predicate">表达式</param>
-        /// <param name="sort">排序</param>
-        /// <param name="buffered">使用缓冲区</param>
-        /// <returns>满足表达式的记录列表</returns>
-        IEnumerable<T> GetList<T>(IPredicate predicate = null, IList<ISort> sort = null, bool buffered = false) where T : class;
-        /// <summary>
-        /// 分页查询
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">每页数量</param>
-        /// <param name="allRowsCount">总数量</param>
-        /// <param name="predicate">表达式</param>
-        /// <param name="sort">排序</param>
-        /// <param name="buffered">使用缓冲区</param>
-        /// <returns>分页查询结果</returns>
-        IEnumerable<T> GetPage<T>(int pageIndex, int pageSize, out long allRowsCount, IPredicate predicate = null, ISort sort = null, bool buffered = true) where T : class;
+        int Count<T>(IPredicate predicate, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         /// <summary>
         /// 多排序条件的分页查询
         /// </summary>
@@ -117,50 +105,73 @@ namespace BimCheck.IDal
         /// <param name="sort">排序</param>
         /// <param name="buffered">使用缓冲区</param>
         /// <returns>分页查询结果</returns>
-        IEnumerable<T> GetPage<T>(int pageIndex, int pageSize, out long allRowsCount, IPredicate predicate = null, IList<ISort> sort = null, bool buffered = true) where T : class;
+        IEnumerable<T> GetPage<T>(int pageIndex, int pageSize, out long allRowsCount, IPredicate predicate = null, IList<ISort> sort = null, IDbTransaction transaction = null, int? commandTimeout = null, bool buffered = false) where T : class;
         #endregion
 
         #region 非查询接口
         /// <summary>
         /// 执行SQL语句
         /// </summary>
-        /// <param name="sql">SQL语句</param>
-        /// <param name="param">查询参数</param>
+        /// <param name="sql">语句</param>
+        /// <param name="param">参数</param>
         /// <param name="transaction">事务</param>
-        /// <returns>受影响行数</returns>
-        int Execute(string sql, dynamic param = null, IDbTransaction transaction = null);
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <param name="commandType">操作类型包括文本或存储过程等</param>
+        /// <returns></returns>
+        int Execute(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
         /// <summary>
         /// 插入对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="entity">对象实例</param>
         /// <param name="transaction">事务</param>
-        /// <returns></returns>
-        dynamic Insert<T>(T entity, IDbTransaction transaction = null) where T : class;
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        /// <returns>插入的主键</returns>
+        dynamic Insert<T>(T entity, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
+        /// <summary>
+        /// 批量插入对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="entities">对象实例列表</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
+        void Insert<T>(IEnumerable<T> entities, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         /// <summary>
         /// 更新对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="entity">对象实例</param>
         /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        bool Update<T>(T entity, IDbTransaction transaction = null) where T : class;
+        bool Update<T>(T entity, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         /// <summary>
-        /// 删除对象
+        /// 根据ID删除对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="primaryId">主键</param>
+        /// <param name="id">主键</param>
         /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        bool Delete<T>(dynamic primaryId, IDbTransaction transaction = null) where T : class;
+        bool Delete<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         /// <summary>
-        /// 删除对象
+        /// 根据表达式删除对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="predicate">表达式</param>
         /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置（秒）</param>
         /// <returns></returns>
-        bool Delete<T>(IPredicate predicate, IDbTransaction transaction = null) where T : class;
+        bool Delete<T>(IPredicate predicate, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
+        /// <summary>
+        /// 根据实例删除对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="entity">对象实例</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">超时设置秒（秒）</param>
+        /// <returns></returns>
+        bool Delete<T>(T entity, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         #endregion
     }
 }

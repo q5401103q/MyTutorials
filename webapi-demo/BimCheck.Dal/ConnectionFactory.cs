@@ -21,6 +21,10 @@ namespace BimCheck.Dal
         /// </summary>
         private static readonly string connString = ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
 
+        /// <summary>
+        /// 创建连接
+        /// </summary>
+        /// <returns></returns>
         public static IDbConnection CreateConnection()
         {
             IDbConnection conn = null;
