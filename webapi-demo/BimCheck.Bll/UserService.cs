@@ -26,7 +26,7 @@ namespace BimCheck.Bll
         /// <param name="dataRepository"></param>
         public UserService(IDataRepository dataRepository)
         {
-            base.DataRepository = dataRepository;
+            DataRepository = dataRepository;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace BimCheck.Bll
 
             string sql = "SELECT * FROM T_USER WHERE USERNAME = @P_USERNAME AND PASSWORD= @P_PASSWORD";
 
-            var user = base.DataRepository.GetFirstOrDefault<T_User>(sql, new { P_USERNAME = model.Username, P_PASSWORD = password });
+            var user = DataRepository.GetFirstOrDefault<T_User>(sql, new { P_USERNAME = model.Username, P_PASSWORD = password });
 
             return AutoMapperHelper<T_User, T_UserDto>.AutoConvert(user);
         }

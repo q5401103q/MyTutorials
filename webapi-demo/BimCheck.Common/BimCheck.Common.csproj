@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A336852-C0CB-4F97-B8DF-D9C6B41B42F4}</ProjectGuid>
+    <ProjectGuid>{4113922A-58C0-44EF-ACF7-D505B188BAE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BimCheck.Common</RootNamespace>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B35597F6-7A3C-45FB-894A-C26DC6064A79}</ProjectGuid>
+    <ProjectGuid>{2EF4D608-E6B5-425E-AA83-72C6C9934817}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BimCheck.IBll</RootNamespace>
@@ -38,7 +38,7 @@
       <HintPath>..\packages\DapperExtensions.1.6.3\lib\net45\DapperExtensions.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.7.2\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.7.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -65,11 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BimCheck.IDal\BimCheck.IDal.csproj">
-      <Project>{a720d69d-efd5-4654-821a-2b72cfe6ab81}</Project>
+      <Project>{55116a55-77dc-40e1-b5f5-8f73ffcd6731}</Project>
       <Name>BimCheck.IDal</Name>
     </ProjectReference>
     <ProjectReference Include="..\BimCheck.Model\BimCheck.Model.csproj">
-      <Project>{6EE21C7F-58B4-43A7-B832-0F7FA214EA7A}</Project>
+      <Project>{dd5db9ab-65c6-458b-9432-86cee20411f7}</Project>
       <Name>BimCheck.Model</Name>
     </ProjectReference>
   </ItemGroup>

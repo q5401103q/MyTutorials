@@ -19,9 +19,10 @@ namespace BimCheck.Api
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
+                TokenEndpointPath = new PathString("/api/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new SimpleAuthorizationServerProvider()
+                Provider = new SimpleAuthorizationProvider(),
+                RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
             
             app.UseOAuthAuthorizationServer(OAuthServerOptions);

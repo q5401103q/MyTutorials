@@ -15,23 +15,68 @@ namespace BimCheck.Api.Controllers
         /// <summary>
         /// 演示用获取token
         /// </summary>
-        /// <param name="reqeustParam">
+        /// <param name="requestParam">
         /// 请求参数
         /// </param>
         /// <remarks>
-        /// 请求地址示例：http://server-ip:server-port/token <br/>
-        /// 请求参数示例：<![CDATA[grant_type=password&username=yourusername&password=yourpassword]]>
+        /// 请求地址示例：http://server-ip:server-port/api/token 
+        /// 
+        /// 请求示例：
+        /// 
+        /// <strong><![CDATA[POST /api/token HTTP/1.1]]></strong>
+        /// <br/>
+        /// <strong><![CDATA[Host: server-ip:server-port]]></strong>
+        /// <br/>
+        /// <strong><![CDATA[Content-Type: application/x-www-form-urlencoded]]></strong>
+        /// <br/>
+        /// <strong><![CDATA[grant_type=password&username=yourusername&password=yourpassword]]></strong>
+        /// <br/>
         /// </remarks>
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public TokenResponseSample CreateToken(string reqeustParam)
+        public TokenResponseSample CreateToken(string requestParam)
         {
             return new TokenResponseSample()
             {
                 access_token = "sample_token_for_developer_bula_bula",
                 token_type = "Bearer",
-                expires_in = 86400
+                expires_in = 86400,
+                refresh_token = "refresh_token_bula_bula"
+            };
+        }
+
+        /// <summary>
+        /// 演示用刷新token
+        /// </summary>
+        /// <param name="requestParam">
+        /// 请求参数
+        /// </param>
+        /// <remarks>
+        /// 请求地址示例：http://server-ip:server-port/api/token 
+        /// 
+        /// 请求示例：
+        /// 
+        /// <strong><![CDATA[POST /api/token HTTP/1.1]]></strong>
+        /// <br/>
+        /// <strong><![CDATA[Host: server-ip:server-port]]></strong>
+        /// <br/>
+        /// <strong><![CDATA[Content-Type: application/x-www-form-urlencoded]]></strong>
+        /// <br/>
+        /// <strong><![CDATA[grant_type=refresh_token&refresh_token=your-refresh-token]]></strong>
+        /// <br/>
+        /// </remarks>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public TokenResponseSample RefreshToken(string requestParam)
+        {
+            return new TokenResponseSample()
+            {
+                access_token = "sample_token_for_developer_bula_bula",
+                token_type = "Bearer",
+                expires_in = 86400,
+                refresh_token = "refresh_token_bula_bula"
             };
         }
     }
@@ -42,7 +87,7 @@ namespace BimCheck.Api.Controllers
     public class TokenResponseSample
     {
         /// <summary>
-        /// token
+        /// 访问token
         /// </summary>
         public string access_token { get; set; }
 
@@ -55,5 +100,10 @@ namespace BimCheck.Api.Controllers
         /// 超时(单位秒)
         /// </summary>
         public int expires_in { get; set; }
+
+        /// <summary>
+        /// 刷新token
+        /// </summary>
+        public string refresh_token { get; set; }
     }
 }

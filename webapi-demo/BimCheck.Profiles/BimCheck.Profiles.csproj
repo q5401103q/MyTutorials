@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{95A98285-1D86-4C3E-AF17-5E9F22784F32}</ProjectGuid>
+    <ProjectGuid>{D8778F48-6EB2-43EC-AC1B-7E7AC9FE35A3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BimCheck.Profiles</RootNamespace>
@@ -50,13 +50,13 @@
     <Compile Include="T_UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BimCheck.Model\BimCheck.Model.csproj">
-      <Project>{6EE21C7F-58B4-43A7-B832-0F7FA214EA7A}</Project>
-      <Name>BimCheck.Model</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\BimCheck.Model\BimCheck.Model.csproj">
+      <Project>{dd5db9ab-65c6-458b-9432-86cee20411f7}</Project>
+      <Name>BimCheck.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

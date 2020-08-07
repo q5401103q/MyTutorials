@@ -123,7 +123,8 @@ namespace BimCheck.Bll
                 new Sort() { PropertyName = "sage", Ascending = false }
             };
 
-            var students = DataRepository.GetPage<Student>(model.PageIndex, model.PageSize, out long totalCount, predicateGroup, sort);
+            long totalCount = 0L;
+            var students = DataRepository.GetPage<Student>(model.PageIndex, model.PageSize, out totalCount, predicateGroup, sort);
             var dataList = AutoMapperHelper<IEnumerable<Student>, IEnumerable<StudentDto>>.AutoConvert(students);
 
             return new PagedDto()
