@@ -36,7 +36,7 @@ namespace PdfSignoff
                         //获取Document对象
                         using (iText.Layout.Document document = new iText.Layout.Document(pdfDocument))
                         {
-							 //从物理文件加载图片
+			    //从物理文件加载图片
                             iText.Layout.Element.Image image1 = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(signPath1));
                             iText.Layout.Element.Image image2 = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(signPath2));
                             iText.Layout.Element.Image image3 = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(signPath3));
