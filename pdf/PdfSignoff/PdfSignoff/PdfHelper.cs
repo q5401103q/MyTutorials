@@ -18,7 +18,7 @@ namespace PdfSignoff
             string targetPath = $"C:\\test\\target.pdf";
             string fontPath = $"C:\\Windows\\Fonts\\simkai.ttf";
 			
-			string signPath1 = @"C:\Users\Administrator\Desktop\a.png";
+	    string signPath1 = @"C:\Users\Administrator\Desktop\a.png";
             string signPath2 = @"C:\Users\Administrator\Desktop\b.png";
             string signPath3 = @"C:\Users\Administrator\Desktop\c.png";
             string signPath4 = @"C:\Users\Administrator\Desktop\d.png";
@@ -42,7 +42,7 @@ namespace PdfSignoff
                             iText.Layout.Element.Image image3 = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(signPath3));
                             iText.Layout.Element.Image image4 = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(signPath4));
 							
-							//将图片绘制到PDF的绝对坐标上，同时缩放图片
+			    //将图片绘制到PDF的绝对坐标上，同时缩放图片
                             //坐标与绘制文字的坐标几乎一致，稍微向左，向上一些
                             //缩放的宽度与后面的宽度一致，示例中是200
                             //缩放的高度计算两个签名之间的高度差，例如93-73=20
